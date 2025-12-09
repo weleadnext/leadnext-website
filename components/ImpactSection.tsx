@@ -114,12 +114,12 @@ export const ImpactSection = () => {
                
                   {/* Animated Pins */}
                   {[
-                    { top: '25%', left: '25%', delay: '0' },   // NW
-                    { top: '25%', left: '75%', delay: '100' }, // NE
+                    { top: '25%', left: '30%', delay: '0' },   // NW
+                    { top: '25%', left: '70%', delay: '100' }, // NE
                     { top: '48%', left: '45%', delay: '200' }, // NC
-                    { top: '65%', left: '20%', delay: '300' }, // SW
-                    { top: '60%', left: '60%', delay: '500' }, // SE
-                    { top: '80%', left: '40%', delay: '700' }, // SS
+                    { top: '65%', left: '25%', delay: '300' }, // SW
+                    { top: '70%', left: '48%', delay: '500' }, // SE
+                    { top: '77%', left: '40%', delay: '700' }, // SS
                   ].map((pos, i) => (
                     <div 
                         key={i}
