@@ -40,7 +40,7 @@ export const Footer = () => {
                 alt="LeadNext Logo"
                 height={150}
                 width={140}
-                className="h-20 w-auto object-contain brightness-0 invert" 
+                className="h-10 w-auto object-contain brightness-0 invert" 
              />
           </div>
           <p className="text-sm leading-relaxed text-gray-400">

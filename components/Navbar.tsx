@@ -21,7 +21,7 @@ export const Navbar = () => {
               alt="LeadNext Logo" 
               width={140}
               height={150} 
-              className="h-20 w-auto object-contain brightness-0 invert" 
+              className="h-10 w-auto object-contain brightness-0 invert" 
               priority
             />
           </Link>
