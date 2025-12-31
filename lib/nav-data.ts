@@ -9,9 +9,9 @@ export const NAVIGATION_DATA: NavItem[] = [
   {
     label: "About",
     children: [
-      { label: "Vision, Mission & Values", href: "#" },
-      { label: "Our Story", href: "#" },
-      { label: "Leadership & Advisory Council", href: "#" },
+      { label: "Vision, Mission & Values", href: "/about/mission-vision-values" },
+      { label: "Our Story", href: "/about/our-story" },
+      { label: "Who We Are", href: "#" },
       { label: "Organizational Structure", href: "#" },
     ],
   },
@@ -23,43 +23,26 @@ export const NAVIGATION_DATA: NavItem[] = [
         description: "Training and Fellowship Programs",
         children: [
           {
-            label: "Apply",
+            label: "Short Courses & Trainings",
             children: [
-              { label: "Application Forms", href: "#" },
-              { label: "Application FAQs", href: "#" },
+              { label: "Environmental Stewardship", href: "#" },
+              { label: "Skills & Entrepreneurship", href: "#" },
+              { label: "Civics & Governance", href: "#" },
+              { label: "Politics & Community", href: "#" },
+              { label: "Ethics & Social Responsibilities", href: "#" },
             ],
           },
           {
-            label: "Trainings & Fellowships",
+            label: "Fellowships",
             children: [
-              {
-                label: "Short Courses",
-                children: [
-                  { label: "Environmental Stewardship", href: "#" },
-                  { label: "Skills & Entrepreneurship", href: "#" },
-                  { label: "Civics & Governance", href: "#" },
-                  { label: "People's Politics", href: "#" },
-                  { label: "Ethics & Social Responsibilities", href: "#" },
-                ],
-              },
-              {
-                label: "Fellowships",
-                children: [
-                  { label: "NextGen Fellowship", href: "#" },
-                  { label: "Stewards Fellowship", href: "#" },
-                  { label: "Women-in-Leadership", href: "#" },
-                ],
-              },
+              { label: "LeadNext Future Leaders Fellowship", href: "#" },
+              { label: "LeadNext Civic Stewards Fellowship", href: "#" },
+              { label: "LeadNext Women Leaders Fellowship", href: "#" },
             ],
           },
           {
             label: "Scholarships",
-            children: [
-              { label: "O Level", href: "#" },
-              { label: "A Level", href: "#" },
-              { label: "Fellowship", href: "#" },
-              { label: "Training", href: "#" },
-            ],
+            children: [{ label: "Apply", href: "#" }],
           },
           {
             label: "Alumni",
@@ -77,13 +60,30 @@ export const NAVIGATION_DATA: NavItem[] = [
           {
             label: "Political Heart",
             children: [
-              { label: "Geopolitical Zone Maps", href: "#" },
+              {
+                label: "Geopolitical Zone Maps",
+                children: [
+                  {
+                    label: "Demographics (Population, Income, Diversity)",
+                    href: "#",
+                  },
+                  { label: "Federal Character Appointments", href: "#" },
+                  { label: "Resources and IGRs", href: "#" },
+                ],
+              },
               { label: "Political Parties", href: "#" },
-              { label: "Elections", href: "#" },
+              {
+                label: "Elections Tracker",
+                children: [
+                  { label: "Voter Registration & INEC Data", href: "#" },
+                  { label: "INEC Calendar", href: "#" },
+                  { label: "Results Tracker", href: "#" },
+                ],
+              },
             ],
           },
           {
-            label: "Executive Eye",
+            label: "Executive Head",
             children: [
               { label: "Federal Government", href: "#" },
               { label: "State Government", href: "#" },
@@ -99,29 +99,40 @@ export const NAVIGATION_DATA: NavItem[] = [
               { label: "LG Councils", href: "#" },
             ],
           },
-          {
-            label: "Civics Centre",
-            children: [
-              { label: "The Citizen", href: "#" },
-              { label: "The Nation", href: "#" },
-              { label: "Social Contract", href: "#" },
-            ],
-          },
+          // {
+          //   label: "Civics Centre",
+          //   children: [
+          //     { label: "The Citizen", href: "#" },
+          //     { label: "The Nation", href: "#" },
+          //     { label: "Social Contract", href: "#" },
+          //   ],
+          // },
         ],
       },
       {
         label: "LeadNext Network",
         children: [
-          { label: "Private Organizations", href: "#" },
-          { label: "Nonprofit Organizations", href: "#" },
-          { label: "Individuals", href: "#" },
+          {
+            label: "Partners",
+            children: [
+              { label: "Private Organizations", href: "#" },
+              { label: "Nonprofit Organizations", href: "#" },
+            ],
+          },
+          {
+            label: "Cohorts",
+            children: [
+              { label: "Training Alumni", href: "#" },
+              { label: "Fellows", href: "#" },
+            ],
+          }
         ],
       },
       {
         label: "Impact",
         children: [
-          { label: "Youth Impact Dashboard", href: "#" },
-          { label: "Alumni Stories", href: "#" },
+          { label: "Youth Impact Statistics Dashboard", href: "#" },
+          { label: "Testimonials", href: "#" },
           { label: "National Reach Map", href: "#" },
           { label: "Annual Reports", href: "#" },
         ],
@@ -134,6 +145,14 @@ export const NAVIGATION_DATA: NavItem[] = [
           { label: "Policy Briefs", href: "#" },
           { label: "Civic Education", href: "#" },
           { label: "Blog", href: "#" },
+        ],
+      },
+      {
+        label: "Civics Centre",
+        children: [
+          { label: "The Citizen", href: "#" },
+          { label: "The Nation", href: "#" },
+          { label: "Social Contract", href: "#" },
         ],
       },
     ],
@@ -177,4 +196,3 @@ export const NAVIGATION_DATA: NavItem[] = [
     ],
   },
 ];
-
