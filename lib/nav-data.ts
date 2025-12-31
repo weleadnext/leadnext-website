@@ -11,8 +11,8 @@ export const NAVIGATION_DATA: NavItem[] = [
     children: [
       { label: "Vision, Mission & Values", href: "/about/mission-vision-values" },
       { label: "Our Story", href: "/about/our-story" },
-      { label: "Who We Are", href: "#" },
-      { label: "Organizational Structure", href: "#" },
+      { label: "Who We Are", href: "/about/who-we-are" },
+      { label: "Organizational Structure", href: "/about/organizational-structure" },
     ],
   },
   {
