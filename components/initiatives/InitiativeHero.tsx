@@ -8,9 +8,10 @@ interface InitiativeHeroProps {
   title: string;
   description: string;
   image: any;
+  onApplyClick?: () => void;
 }
 
-export const InitiativeHero = ({ title, description, image }: InitiativeHeroProps) => {
+export const InitiativeHero = ({ title, description, image, onApplyClick }: InitiativeHeroProps) => {
   return (
     <section className="bg-navy min-h-[500px] flex items-stretch overflow-hidden">
       <div className="flex-1 flex items-center justify-end p-12 lg:p-20">
@@ -22,7 +23,10 @@ export const InitiativeHero = ({ title, description, image }: InitiativeHeroProp
             <p className="text-lg text-gray-200 mb-8 leading-relaxed">
               {description}
             </p>
-            <button className="bg-gold text-navy font-bold py-4 px-8 rounded hover:bg-white transition-colors">
+            <button 
+              onClick={onApplyClick}
+              className="bg-gold text-navy font-bold py-4 px-8 rounded hover:bg-white transition-colors"
+            >
               Apply Now
             </button>
           </FadeIn>

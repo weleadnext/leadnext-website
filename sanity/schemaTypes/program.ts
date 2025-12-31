@@ -46,54 +46,36 @@ export const program = defineType({
       description: 'Detailed "About the Program" text.'
     }),
     defineField({
-      name: 'curriculum',
-      title: 'Curriculum Modules',
+      name: 'whatItOffers',
+      title: 'What the Program Offers',
       type: 'array',
-      of: [{
-        type: 'object',
-        fields: [
-          {name: 'title', type: 'string', title: 'Module Title'},
-          {name: 'description', type: 'text', title: 'Module Description'},
-          {name: 'icon', type: 'string', title: 'Icon Name', options: {list: ['Users', 'CheckCircle2', 'Mic', 'BookOpen', 'Lightbulb', 'Leaf']}},
-        ]
-      }]
+      of: [{type: 'string'}],
+      description: 'List of benefits or offerings (e.g., "Interactive learning on governance")'
     }),
     defineField({
-      name: 'testimonials',
-      title: 'Testimonials',
-      type: 'array',
-      of: [{
-        type: 'object',
-        fields: [
-          {name: 'quote', type: 'text', title: 'Quote'},
-          {name: 'author', type: 'string', title: 'Author'},
-          {name: 'role', type: 'string', title: 'Role/Cohort'},
-        ]
-      }]
+      name: 'programStructure',
+      title: 'Program Structure',
+      type: 'object',
+      fields: [
+        {name: 'duration', type: 'string', title: 'Duration'},
+        {name: 'cohortSize', type: 'string', title: 'Cohort Size'},
+        {name: 'deliveryMode', type: 'string', title: 'Delivery Mode'},
+        {name: 'language', type: 'string', title: 'Language'},
+      ]
     }),
     defineField({
-      name: 'stats',
-      title: 'Impact Statistics',
+      name: 'eligibilityCriteria',
+      title: 'Eligibility Criteria',
       type: 'array',
-      of: [{
-        type: 'object',
-        fields: [
-          {name: 'value', type: 'string', title: 'Value (e.g., 750+)'},
-          {name: 'label', type: 'string', title: 'Label (e.g., Graduates)'},
-        ]
-      }]
+      of: [{type: 'string'}],
+      description: 'List of eligibility requirements'
     }),
     defineField({
-      name: 'faqs',
-      title: 'FAQs',
+      name: 'applyText',
+      title: 'Apply Section Text',
       type: 'array',
-      of: [{
-        type: 'object',
-        fields: [
-          {name: 'question', type: 'string', title: 'Question'},
-          {name: 'answer', type: 'text', title: 'Answer'},
-        ]
-      }]
+      of: [{type: 'block'}],
+      description: 'Text for the application section'
     }),
   ],
   preview: {

@@ -24,25 +24,27 @@ export const NAVIGATION_DATA: NavItem[] = [
         children: [
           {
             label: "Short Courses & Trainings",
+            href: "/coming-soon#short-courses",
             children: [
-              { label: "Environmental Stewardship", href: "#" },
-              { label: "Skills & Entrepreneurship", href: "#" },
-              { label: "Civics & Governance", href: "#" },
-              { label: "Politics & Community", href: "#" },
-              { label: "Ethics & Social Responsibilities", href: "#" },
+              { label: "Environmental Stewardship", href: "/coming-soon#short-courses" },
+              { label: "Skills & Entrepreneurship", href: "/coming-soon#short-courses" },
+              { label: "Civics & Governance", href: "/coming-soon#short-courses" },
+              { label: "Politics & Community", href: "/coming-soon#short-courses" },
+              { label: "Ethics & Social Responsibilities", href: "/coming-soon#short-courses" },
             ],
           },
           {
             label: "Fellowships",
             children: [
-              { label: "LeadNext Future Leaders Fellowship", href: "#" },
-              { label: "LeadNext Civic Stewards Fellowship", href: "#" },
-              { label: "LeadNext Women Leaders Fellowship", href: "#" },
+              { label: "LeadNext Future Leaders Fellowship", href: "/initiatives/leadnext-future-leaders-fellowship" },
+              { label: "LeadNext Civic Stewards Fellowship", href: "/initiatives/leadnext-civic-stewards-fellowship" },
+              { label: "LeadNext Women Leaders Fellowship", href: "/initiatives/leadnext-women-leaders-fellowship" },
             ],
           },
           {
             label: "Scholarships",
-            children: [{ label: "Apply", href: "#" }],
+            href: "/coming-soon#scholarships",
+            children: [{ label: "Apply", href: "/coming-soon#scholarships" }],
           },
           {
             label: "Alumni",
@@ -139,20 +141,22 @@ export const NAVIGATION_DATA: NavItem[] = [
       },
       {
         label: "Citizen Library",
+        href: "/coming-soon#citizen-library",
         children: [
-          { label: "The Nigerian Story", href: "#" },
-          { label: "Publications", href: "#" },
-          { label: "Policy Briefs", href: "#" },
-          { label: "Civic Education", href: "#" },
-          { label: "Blog", href: "#" },
+          { label: "The Nigerian Story", href: "/coming-soon#citizen-library" },
+          { label: "Publications", href: "/coming-soon#citizen-library" },
+          { label: "Policy Briefs", href: "/coming-soon#citizen-library" },
+          { label: "Civic Education", href: "/coming-soon#citizen-library" },
+          { label: "Blog", href: "/coming-soon#citizen-library" },
         ],
       },
       {
         label: "Civics Centre",
+        href: "/coming-soon#civics-center",
         children: [
-          { label: "The Citizen", href: "#" },
-          { label: "The Nation", href: "#" },
-          { label: "Social Contract", href: "#" },
+          { label: "The Citizen", href: "/coming-soon#civics-center" },
+          { label: "The Nation", href: "/coming-soon#civics-center" },
+          { label: "Social Contract", href: "/coming-soon#civics-center" },
         ],
       },
     ],

@@ -22,13 +22,14 @@ export const PROGRAMS_QUERY = groq`*[_type == "program"] | order(_createdAt asc)
 export const PROGRAM_BY_SLUG_QUERY = groq`*[_type == "program" && slug.current == $slug][0] {
   _id,
   title,
+  slug,
   description,
   mainImage,
   overview,
-  curriculum,
-  testimonials,
-  stats,
-  faqs
+  whatItOffers,
+  programStructure,
+  eligibilityCriteria,
+  applyText
 }`
 
 export const OFFICIALS_QUERY = groq`*[_type == "official"] | order(name asc) {

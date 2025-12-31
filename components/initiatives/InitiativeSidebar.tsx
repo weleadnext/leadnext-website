@@ -2,6 +2,10 @@
 
 import Link from 'next/link';
 
+interface InitiativeSidebarProps {
+  onApplyClick?: () => void;
+}
+
 const PROGRAMS = [
   "Civic & Governance Training",
   "Innovation & Entrepreneurship",
@@ -9,7 +13,7 @@ const PROGRAMS = [
   "Women-in Leadership Fellowship"
 ];
 
-export const InitiativeSidebar = () => {
+export const InitiativeSidebar = ({ onApplyClick }: InitiativeSidebarProps = {}) => {
   return (
     <div className="space-y-8 sticky top-24">
       {/* Navigation Card */}
@@ -33,7 +37,10 @@ export const InitiativeSidebar = () => {
           <p className="text-white/90 mb-6 text-sm">
             Take the first step towards becoming a leader in your community.
           </p>
-          <button className="w-full bg-gold text-navy font-bold py-3 px-6 rounded hover:bg-white transition-colors">
+          <button 
+            onClick={onApplyClick}
+            className="w-full bg-gold text-navy font-bold py-3 px-6 rounded hover:bg-white transition-colors"
+          >
             Apply Now
           </button>
         </div>

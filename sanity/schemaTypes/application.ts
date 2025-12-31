@@ -1,0 +1,104 @@
+import { defineField, defineType } from 'sanity'
+
+export const application = defineType({
+  name: 'application',
+  title: 'Application',
+  type: 'document',
+  fields: [
+    defineField({
+      name: 'program',
+      title: 'Program',
+      type: 'reference',
+      to: { type: 'program' },
+      validation: (Rule) => Rule.required(),
+    }),
+    defineField({
+      name: 'firstName',
+      title: 'First Name',
+      type: 'string',
+      validation: (Rule) => Rule.required(),
+    }),
+    defineField({
+      name: 'lastName',
+      title: 'Last Name',
+      type: 'string',
+      validation: (Rule) => Rule.required(),
+    }),
+    defineField({
+      name: 'email',
+      title: 'Email',
+      type: 'string',
+      validation: (Rule) => Rule.required().email(),
+    }),
+    defineField({
+      name: 'phone',
+      title: 'Phone Number',
+      type: 'string',
+      validation: (Rule) => Rule.required(),
+    }),
+    defineField({
+      name: 'coverLetter',
+      title: 'Cover Letter',
+      type: 'text',
+      rows: 5,
+      validation: (Rule) => Rule.required().min(50).max(1000),
+    }),
+    defineField({
+      name: 'resume',
+      title: 'Resume',
+      type: 'file',
+      options: {
+        accept: '.pdf,.doc,.docx'
+      },
+      validation: (Rule) => Rule.required(),
+    }),
+    defineField({
+      name: 'status',
+      title: 'Status',
+      type: 'string',
+      options: {
+        list: [
+          {title: 'Pending', value: 'pending'},
+          {title: 'Under Review', value: 'under_review'},
+          {title: 'Accepted', value: 'accepted'},
+          {title: 'Rejected', value: 'rejected'},
+        ],
+        layout: 'radio'
+      },
+      initialValue: 'pending'
+    }),
+    defineField({
+      name: 'submittedAt',
+      title: 'Submitted At',
+      type: 'datetime',
+      initialValue: () => new Date().toISOString(),
+    }),
+  ],
+  preview: {
+    select: {
+      firstName: 'firstName',
+      lastName: 'lastName',
+      program: 'program.title',
+      status: 'status',
+    },
+    prepare({ firstName, lastName, program, status }) {
+      return {
+        title: `${firstName} ${lastName}`,
+        subtitle: `${program || 'No Program'} - ${status || 'pending'}`,
+      }
+    },
+  },
+  orderings: [
+    {
+      title: 'Submission Date, Newest',
+      name: 'submittedAtDesc',
+      by: [{field: 'submittedAt', direction: 'desc'}]
+    },
+    {
+      title: 'Program',
+      name: 'programAsc',
+      by: [{field: 'program.title', direction: 'asc'}]
+    }
+  ],
+})
+
