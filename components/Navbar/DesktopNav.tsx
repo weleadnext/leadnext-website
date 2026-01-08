@@ -91,7 +91,7 @@ export const DesktopNav = () => {
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
 
   return (
-    <div className="hidden lg:flex lg:items-center lg:gap-8">
+    <div className="hidden lg:flex lg:items-center lg:gap-6">
       {NAVIGATION_DATA.map((item, idx) => {
         const isMega = item.label === "Initiatives";
 
@@ -120,7 +120,7 @@ export const DesktopNav = () => {
                   exit={{ opacity: 0, y: 10 }}
                   transition={{ duration: 0.2 }}
                   className={`absolute top-full z-50 bg-white shadow-xl ring-1 ring-black/5 ${
-                    isMega ? 'left-1/2 -translate-x-1/2' : 'left-0 w-64'
+                    isMega ? 'left-0' : 'left-0 w-64'
                   }`}
                 >
                     {/* Decorator line */}

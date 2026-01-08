@@ -13,7 +13,7 @@ export const Navbar = () => {
   return (
     <>
       <nav className="w-full bg-navy sticky top-0 z-50">
-        <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4">
+        <div className="mx-auto flex max-w-[1440px] items-center justify-between px-6 xl:px-12 py-4">
           {/* Logo */}
           <Link href="/" className="z-50 flex items-center gap-2">
             <Image 

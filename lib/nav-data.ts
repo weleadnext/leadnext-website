@@ -46,13 +46,6 @@ export const NAVIGATION_DATA: NavItem[] = [
             href: "/coming-soon#scholarships",
             children: [{ label: "Apply", href: "/coming-soon#scholarships" }],
           },
-          // {
-          //   label: "Alumni",
-          //   children: [
-          //     { label: "Cohorts", href: "#" },
-          //     { label: "Testimonials", href: "#" },
-          //   ],
-          // },
         ],
       },
       {
@@ -101,53 +94,6 @@ export const NAVIGATION_DATA: NavItem[] = [
               { label: "LG Councils", href: "#" },
             ],
           },
-          // {
-          //   label: "Civics Centre",
-          //   children: [
-          //     { label: "The Citizen", href: "#" },
-          //     { label: "The Nation", href: "#" },
-          //     { label: "Social Contract", href: "#" },
-          //   ],
-          // },
-        ],
-      },
-      {
-        label: "LeadNext Network",
-        children: [
-          {
-            label: "Partners",
-            children: [
-              { label: "Private Organizations", href: "#" },
-              { label: "Nonprofit Organizations", href: "#" },
-            ],
-          },
-          {
-            label: "Cohorts",
-            children: [
-              { label: "Training Alumni", href: "#" },
-              { label: "Fellows", href: "#" },
-            ],
-          }
-        ],
-      },
-      {
-        label: "Impact",
-        children: [
-          { label: "Youth Impact Statistics Dashboard", href: "#" },
-          { label: "Testimonials", href: "#" },
-          { label: "National Reach Map", href: "#" },
-          { label: "Annual Reports", href: "#" },
-        ],
-      },
-      {
-        label: "Citizen Library",
-        href: "/coming-soon#citizen-library",
-        children: [
-          { label: "The Nigerian Story", href: "/coming-soon#citizen-library" },
-          { label: "Publications", href: "/coming-soon#citizen-library" },
-          { label: "Policy Briefs", href: "/coming-soon#citizen-library" },
-          { label: "Civic Education", href: "/coming-soon#citizen-library" },
-          { label: "Blog", href: "/coming-soon#citizen-library" },
         ],
       },
       {
@@ -159,6 +105,45 @@ export const NAVIGATION_DATA: NavItem[] = [
           { label: "Social Contract", href: "/coming-soon#civics-center" },
         ],
       },
+    ],
+  },
+  {
+    label: "LeadNext Network",
+    children: [
+      {
+        label: "Partners",
+        children: [
+          { label: "Private Organizations", href: "#" },
+          { label: "Nonprofit Organizations", href: "#" },
+        ],
+      },
+      {
+        label: "Cohorts",
+        children: [
+          { label: "Training Alumni", href: "#" },
+          { label: "Fellows", href: "#" },
+        ],
+      },
+    ],
+  },
+  {
+    label: "Impact",
+    children: [
+      { label: "Youth Impact Statistics Dashboard", href: "#" },
+      { label: "Testimonials", href: "#" },
+      { label: "National Reach Map", href: "#" },
+      { label: "Annual Reports", href: "#" },
+    ],
+  },
+  {
+    label: "Citizen Library",
+    href: "/coming-soon#citizen-library",
+    children: [
+      { label: "The Nigerian Story", href: "/coming-soon#citizen-library" },
+      { label: "Publications", href: "/coming-soon#citizen-library" },
+      { label: "Policy Briefs", href: "/coming-soon#citizen-library" },
+      { label: "Civic Education", href: "/coming-soon#citizen-library" },
+      { label: "Blog", href: "/coming-soon#citizen-library" },
     ],
   },
   {
