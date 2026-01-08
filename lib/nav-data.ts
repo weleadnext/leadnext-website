@@ -68,17 +68,18 @@ export const NAVIGATION_DATA: NavItem[] = [
               },
               { label: "Political Parties", href: "#" },
               {
-                label: "Elections Tracker",
+                label: "Elections",
+                href: "/initiatives/politics-and-governance/elections",
                 children: [
-                  { label: "Voter Registration & INEC Data", href: "#" },
-                  { label: "INEC Calendar", href: "#" },
-                  { label: "Results Tracker", href: "#" },
+                  { label: "Voter Registration & INEC Data", href: "/initiatives/politics-and-governance/elections/voter-registration" },
+                  { label: "INEC Calendar", href: "/initiatives/politics-and-governance/elections/inec-calendar" },
+                  { label: "Results Tracker", href: "/initiatives/politics-and-governance/elections/results-tracker" },
                 ],
               },
             ],
           },
           {
-            label: "Executive Head",
+            label: "Executive Eye",
             children: [
               { label: "Federal Government", href: "#" },
               { label: "State Government", href: "#" },

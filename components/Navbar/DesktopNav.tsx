@@ -25,7 +25,16 @@ const MegaMenu = ({ item }: { item: NavItem }) => {
                 {child.children ? (
                   // Deep nesting logic for Mega Menu (Level 3)
                   <div className="space-y-2">
-                    <span className="block text-sm font-semibold text-teal">{child.label}</span>
+                    {child.href ? (
+                      <Link 
+                        href={child.href}
+                        className="block text-sm font-semibold text-teal hover:text-navy transition-colors"
+                      >
+                        {child.label}
+                      </Link>
+                    ) : (
+                      <span className="block text-sm font-semibold text-teal">{child.label}</span>
+                    )}
                     <ul className="pl-3 border-l border-gray-100 space-y-1">
                       {child.children.map((subChild, scIdx) => (
                         <li key={scIdx}>
