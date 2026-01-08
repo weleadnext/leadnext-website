@@ -1,6 +1,8 @@
 'use client';
 
 import { ELECTION_DATA } from '@/lib/data/elections';
+import { ArrowRight } from 'lucide-react';
+import Link from 'next/link';
 
 export const ElectionsTable = () => {
   return (
@@ -14,12 +16,13 @@ export const ElectionsTable = () => {
             <th className="px-6 py-4">Votes</th>
             <th className="px-6 py-4">Runner-up</th>
             <th className="px-6 py-4">Turnout</th>
-            <th className="px-6 py-4 rounded-tr-xl">Total Votes</th>
+            <th className="px-6 py-4">Total Votes</th>
+            <th className="px-6 py-4 rounded-tr-xl">Action</th>
           </tr>
         </thead>
         <tbody className="divide-y divide-gray-100">
           {ELECTION_DATA.slice().reverse().map((election) => (
-            <tr key={election.year} className="hover:bg-gray-50 transition-colors">
+            <tr key={election.year} className="hover:bg-gray-50 transition-colors group">
               <td className="px-6 py-4 font-bold text-navy">{election.year}</td>
               <td className="px-6 py-4 font-medium">{election.winner.name}</td>
               <td className="px-6 py-4">
@@ -42,6 +45,15 @@ export const ElectionsTable = () => {
                 </span>
               </td>
               <td className="px-6 py-4 text-gray-500">{election.votesCast?.toLocaleString() || '-'}</td>
+              <td className="px-6 py-4">
+                <Link 
+                  href={`/initiatives/politics-and-governance/elections/results-tracker/${election.year}`}
+                  className="inline-flex items-center gap-1 text-teal font-medium text-xs hover:text-navy transition-colors"
+                >
+                  View Details
+                  <ArrowRight className="h-3 w-3 group-hover:translate-x-1 transition-transform" />
+                </Link>
+              </td>
             </tr>
           ))}
         </tbody>
