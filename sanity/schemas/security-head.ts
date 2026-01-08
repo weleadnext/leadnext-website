@@ -1,25 +1,31 @@
 import { defineField, defineType } from 'sanity'
 
 export default defineType({
-  name: 'cabinetMember',
-  title: 'Cabinet Member',
+  name: 'securityHead',
+  title: 'Security Head',
   type: 'document',
   fields: [
     defineField({
-      name: 'name',
-      title: 'Name',
+      name: 'agency',
+      title: 'Agency/Institution',
       type: 'string',
       validation: (Rule) => Rule.required(),
     }),
     defineField({
-      name: 'portfolio',
-      title: 'Portfolio',
+      name: 'position',
+      title: 'Position',
       type: 'string',
       validation: (Rule) => Rule.required(),
     }),
     defineField({
-      name: 'wikiUrl',
-      title: 'Wikipedia URL',
+      name: 'incumbent',
+      title: 'Incumbent Name',
+      type: 'string',
+      validation: (Rule) => Rule.required(),
+    }),
+    defineField({
+      name: 'publicProfileUrl',
+      title: 'Public Profile URL',
       type: 'url',
     }),
     defineField({
@@ -39,8 +45,8 @@ export default defineType({
   ],
   preview: {
     select: {
-      title: 'name',
-      subtitle: 'portfolio',
+      title: 'incumbent',
+      subtitle: 'position',
       media: 'image',
     },
   },

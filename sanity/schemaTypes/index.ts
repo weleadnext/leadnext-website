@@ -8,7 +8,10 @@ import { program } from './program'
 import { application } from './application'
 import { mailingListSubscription } from './mailingListSubscription'
 import cabinetMember from '../schemas/cabinet-member'
+import securityHead from '../schemas/security-head'
+import federalMda from '../schemas/federal-mda'
+import stateCabinetMember from '../schemas/state-cabinet-member'
 
 export const schema: { types: SchemaTypeDefinition[] } = {
-  types: [zone, state, lga, official, project, program, application, mailingListSubscription, cabinetMember],
+  types: [zone, state, lga, official, project, program, application, mailingListSubscription, cabinetMember, securityHead, federalMda, stateCabinetMember],
 }

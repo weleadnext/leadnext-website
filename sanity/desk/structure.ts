@@ -1,5 +1,5 @@
 import { StructureBuilder } from 'sanity/structure'
-import { FileText, MapPin, Building2, User, GraduationCap, Inbox, CheckCircle2, Clock, XCircle, Eye, Mail } from 'lucide-react'
+import { FileText, MapPin, Building2, User, GraduationCap, Inbox, CheckCircle2, Clock, XCircle, Eye, Mail, Briefcase, ShieldAlert, Library } from 'lucide-react'
 
 export const structure = (S: StructureBuilder) =>
   S.list()
@@ -133,6 +133,26 @@ export const structure = (S: StructureBuilder) =>
         .title('Officials')
         .icon(User)
         .child(S.documentTypeList('official').title('Officials')),
+      
+      S.listItem()
+        .title('Cabinet Members (Federal)')
+        .icon(Briefcase)
+        .child(S.documentTypeList('cabinetMember').title('Federal Cabinet')),
+
+      S.listItem()
+        .title('Cabinet Members (State)')
+        .icon(Briefcase)
+        .child(S.documentTypeList('stateCabinetMember').title('State Cabinet')),
+      
+      S.listItem()
+        .title('Security Heads')
+        .icon(ShieldAlert)
+        .child(S.documentTypeList('securityHead').title('Security Heads')),
+      
+      S.listItem()
+        .title('Federal MDAs')
+        .icon(Library)
+        .child(S.documentTypeList('federalMda').title('Federal MDAs')),
       
       S.listItem()
         .title('Projects')

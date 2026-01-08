@@ -6,7 +6,8 @@ import {
   Briefcase, 
   PieChart,
   ArrowRight,
-  Scale
+  Scale,
+  Library
 } from 'lucide-react';
 import Link from 'next/link';
 
@@ -27,6 +28,14 @@ export default function FederalGovernmentHub() {
       href: "/initiatives/politics-and-governance/executive-eye/federal/security-heads",
       color: "bg-navy text-white",
       hoverColor: "hover:border-navy"
+    },
+    {
+      title: "Federal MDAs",
+      description: "Ministries, Departments, and Agencies driving federal policies and operations.",
+      icon: Library,
+      href: "/initiatives/politics-and-governance/executive-eye/federal/mdas",
+      color: "bg-gray-600 text-white",
+      hoverColor: "hover:border-gray-600"
     },
     {
       title: "Executive Bills",

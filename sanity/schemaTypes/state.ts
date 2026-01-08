@@ -25,6 +25,14 @@ export const state = defineType({
       type: 'reference',
       to: { type: 'zone' },
     }),
+    defineField({
+      name: 'logo',
+      title: 'State Logo',
+      type: 'image',
+      options: {
+        hotspot: true,
+      },
+    }),
   ],
 })
 

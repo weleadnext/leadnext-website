@@ -1,8 +1,8 @@
 import { defineField, defineType } from 'sanity'
 
 export default defineType({
-  name: 'cabinetMember',
-  title: 'Cabinet Member',
+  name: 'stateCabinetMember',
+  title: 'State Cabinet Member',
   type: 'document',
   fields: [
     defineField({
@@ -15,18 +15,20 @@ export default defineType({
       name: 'portfolio',
       title: 'Portfolio',
       type: 'string',
+      description: 'e.g., Commissioner for Health, Special Adviser on Education',
+      validation: (Rule) => Rule.required(),
+    }),
+    defineField({
+      name: 'state',
+      title: 'State',
+      type: 'reference',
+      to: [{type: 'state'}],
       validation: (Rule) => Rule.required(),
     }),
     defineField({
       name: 'wikiUrl',
-      title: 'Wikipedia URL',
+      title: 'Wikipedia/Bio URL',
       type: 'url',
-    }),
-    defineField({
-      name: 'stateOfOrigin',
-      title: 'State of Origin',
-      type: 'reference',
-      to: [{type: 'state'}],
     }),
     defineField({
       name: 'image',

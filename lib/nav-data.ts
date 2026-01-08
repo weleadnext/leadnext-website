@@ -82,7 +82,7 @@ export const NAVIGATION_DATA: NavItem[] = [
             label: "Executive Eye",
             children: [
               { label: "Federal Government", href: "/initiatives/politics-and-governance/executive-eye/federal" },
-              { label: "State Government", href: "#" },
+              { label: "State Government", href: "/initiatives/politics-and-governance/executive-eye/state" },
               { label: "Local Government", href: "#" },
             ],
           },
