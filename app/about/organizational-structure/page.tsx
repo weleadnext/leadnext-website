@@ -4,23 +4,9 @@ import { Building2, Users, Briefcase, Target, ArrowDown } from 'lucide-react';
 const STRUCTURE_LEVELS = [
   {
     number: "1",
-    title: "Executive Leadership",
-    description: "Strategic direction and day-to-day operations",
-    color: "bg-navy",
-    textColor: "text-white",
-    icon: Briefcase,
-    responsibilities: [
-      "Strategic planning and vision setting",
-      "Day-to-day operational management",
-      "Program development and oversight",
-      "Stakeholder engagement and partnerships"
-    ]
-  },
-  {
-    number: "2",
-    title: "Board of Directors",
+    title: "Board of Trustees",
     description: "Governance, oversight, and strategic guidance",
-    color: "bg-teal",
+    color: "bg-navy",
     textColor: "text-white",
     icon: Building2,
     responsibilities: [
@@ -28,6 +14,20 @@ const STRUCTURE_LEVELS = [
       "Strategic oversight and guidance",
       "Financial oversight and accountability",
       "Policy development and approval"
+    ]
+  },
+  {
+    number: "2",
+    title: "Executive Leadership",
+    description: "Strategic direction and day-to-day operations",
+    color: "bg-teal",
+    textColor: "text-white",
+    icon: Briefcase,
+    responsibilities: [
+      "Strategic planning and vision setting",
+      "Day-to-day operational management",
+      "Program development and oversight",
+      "Stakeholder engagement and partnerships"
     ]
   },
   {

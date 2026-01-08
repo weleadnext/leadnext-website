@@ -45,7 +45,7 @@ export default function WhoWeArePage() {
               <h2 className="font-serif text-4xl font-bold text-navy">Leadership Team</h2>
             </div>
             <p className="text-gray-600 text-lg max-w-2xl mx-auto">
-              Our leadership brings together decades of experience in engineering, project management, and strategic governance to drive LeadNext's vision forward.
+              Our leadership team brings together a blend of strategic insight, operational expertise, and a shared commitment to delivering real impact in service of our mission.
             </p>
           </div>
 

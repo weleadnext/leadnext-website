@@ -46,13 +46,13 @@ export const NAVIGATION_DATA: NavItem[] = [
             href: "/coming-soon#scholarships",
             children: [{ label: "Apply", href: "/coming-soon#scholarships" }],
           },
-          {
-            label: "Alumni",
-            children: [
-              { label: "Cohorts", href: "#" },
-              { label: "Testimonials", href: "#" },
-            ],
-          },
+          // {
+          //   label: "Alumni",
+          //   children: [
+          //     { label: "Cohorts", href: "#" },
+          //     { label: "Testimonials", href: "#" },
+          //   ],
+          // },
         ],
       },
       {
