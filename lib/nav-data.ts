@@ -36,9 +36,9 @@ export const NAVIGATION_DATA: NavItem[] = [
           {
             label: "Fellowships",
             children: [
-              { label: "LeadNext Future Leaders Fellowship", href: "/initiatives/leadnext-future-leaders-fellowship" },
-              { label: "LeadNext Civic Stewards Fellowship", href: "/initiatives/leadnext-civic-stewards-fellowship" },
-              { label: "LeadNext Women Leaders Fellowship", href: "/initiatives/leadnext-women-leaders-fellowship" },
+              { label: "LeadNext Future Leaders Fellowship", href: "/initiatives/future-leaders-fellowship" },
+              { label: "LeadNext Civic Stewards Fellowship", href: "/initiatives/civic-stewards-fellowship" },
+              { label: "LeadNext Women Leaders Fellowship", href: "/initiatives/women-leaders-fellowship" },
             ],
           },
           {

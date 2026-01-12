@@ -29,13 +29,11 @@ export const ImpactSection = () => {
           <div className="lg:col-span-5 flex flex-col justify-center">
             <FadeIn>
               <h2 className="font-serif text-4xl font-bold text-navy mb-6">
-                Measurable Impact <br/>
+                Target Impact <br/>
                 <span className="text-teal">Across the Nation</span>
               </h2>
               <p className="text-gray-600 text-lg leading-relaxed mb-10">
-                Since our inception, we've been dedicated to scaling our reach. 
-                From a small cohort in Abuja to a nationwide movement, our data 
-                reflects our commitment to building the next generation of Nigerian leaders.
+                Our target is to scale to a national footprint, guided by measurable impact and a long-term commitment to developing Nigeria’s next generation of leaders.
               </p>
             </FadeIn>
 

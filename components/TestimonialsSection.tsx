@@ -6,22 +6,22 @@ import { Quote } from 'lucide-react';
 
 const TESTIMONIALS = [
   {
-    quote: "NLI gave me the confidence to run for local office. The training on policy formulation was invaluable.",
-    author: "Amina Yusuf",
-    role: "Councilor Elect, Kaduna",
-    image: "https://images.unsplash.com/photo-1531123897727-8f129e1688ce?auto=format&fit=crop&q=80"
+    quote: "Governance is about service to the people, not personal gain.",
+    author: "Malam Aminu Kano",
+    role: "Statesman & Teacher",
+    image: "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c3/Mallam_Aminu_Kano.jpg/440px-Mallam_Aminu_Kano.jpg"
   },
   {
-    quote: "Through the Fellowship, I connected with mentors who helped scale my community recycling project across 3 states.",
-    author: "Tunde Bakare",
-    role: "Social Entrepreneur",
-    image: "https://images.unsplash.com/photo-1506277886164-e25aa3f4ef7f?auto=format&fit=crop&q=80"
+    quote: "Show the light, and the people will find the way.",
+    author: "Dr. Nnamdi Azikiwe",
+    role: "First President of Nigeria",
+    image: "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6b/Nnamdi_Azikiwe.jpg/440px-Nnamdi_Azikiwe.jpg"
   },
   {
-    quote: "The data from the Civic Centre helped our advocacy group push for better healthcare funding in our LGA.",
-    author: "Sarah Oladipo",
-    role: "Health Advocate",
-    image: "https://images.unsplash.com/photo-1589156280159-27698a70f29e?auto=format&fit=crop&q=80"
+    quote: "A people’s education is the foundation of their progress.",
+    author: "Chief Obafemi Awolowo",
+    role: "Statesman & Nationalist",
+    image: "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e0/Obafemi_Awolowo.jpg/440px-Obafemi_Awolowo.jpg"
   }
 ];
 
@@ -34,9 +34,9 @@ export const TestimonialsSection = () => {
       <div className="mx-auto max-w-7xl px-6 relative z-10">
         <div className="text-center mb-16">
           <FadeIn>
-            <h2 className="font-serif text-4xl font-bold text-white mb-4">Voices of Change</h2>
+            <h2 className="font-serif text-4xl font-bold text-white mb-4">Voices of Inspiration</h2>
             <p className="text-gray-300 max-w-2xl mx-auto">
-              Hear from the young leaders and partners we've worked with to build a better Nigeria.
+              Echoes of the past shaping the future we are building
             </p>
           </FadeIn>
         </div>

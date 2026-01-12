@@ -32,7 +32,7 @@ export const MissionSection = () => {
               <span className="text-gold">Policy & People.</span>
             </h3>
             <p className="text-lg text-gray-600 mb-8 leading-relaxed">
-              We believe that for Nigeria to thrive, its youth must be at the forefront of governance. NLI provides the tools, data, and platforms necessary to transform passive observers into active changemakers.
+              We believe that for Nigeria to thrive, its youth must be at the forefront of governance. LeadNext provides the tools, data, and platforms necessary to transform passive observers into active changemakers.
             </p>
             
             <ul className="space-y-4 mb-8">
