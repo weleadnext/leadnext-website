@@ -67,20 +67,46 @@ const DropdownMenu = ({ item }: { item: NavItem }) => {
       {item.children.map((child, idx) => (
         <div key={idx} className="relative group/sub">
           {child.children ? (
-             // Nested Dropdown
+            // Nested Dropdown
             <div className="w-full">
-                <button className="flex w-full items-center justify-between rounded-md px-4 py-2 text-sm text-gray-600 hover:bg-gray-50 hover:text-navy">
-                    {child.label}
-                    <ChevronRight className="h-4 w-4" />
-                </button>
-                {/* Recursive or simple list for sub-items */}
-                <div className="hidden group-hover/sub:block absolute left-full top-0 ml-2 w-56 rounded-md bg-white p-2 shadow-lg ring-1 ring-black/5">
-                    {child.children.map((sub, sIdx) => (
-                         <Link key={sIdx} href={sub.href || '#'} className="block rounded-md px-4 py-2 text-sm text-gray-600 hover:bg-gray-50 hover:text-navy">
-                            {sub.label}
-                         </Link>
-                    ))}
-                </div>
+              <button className="flex w-full items-center justify-between rounded-md px-4 py-2 text-sm text-gray-600 hover:bg-gray-50 hover:text-navy">
+                {child.label}
+                <ChevronRight className="h-4 w-4" />
+              </button>
+              {/* Recursive or simple list for sub-items */}
+              <div className="hidden group-hover/sub:block absolute left-full top-0 ml-2 w-56 rounded-md bg-white p-2 shadow-lg ring-1 ring-black/5">
+                {child.children.map((sub, sIdx) => (
+                  <div key={sIdx} className="relative group/deep">
+                    {sub.children ? (
+                      // Level 4 recursion
+                      <div className="w-full">
+                        <button className="flex w-full items-center justify-between rounded-md px-4 py-2 text-sm text-gray-600 hover:bg-gray-50 hover:text-navy">
+                          {sub.label}
+                          <ChevronRight className="h-4 w-4" />
+                        </button>
+                        <div className="hidden group-hover/deep:block absolute left-full top-0 ml-2 w-56 rounded-md bg-white p-2 shadow-lg ring-1 ring-black/5">
+                          {sub.children.map((deepSub, dIdx) => (
+                            <Link
+                              key={dIdx}
+                              href={deepSub.href || '#'}
+                              className="block rounded-md px-4 py-2 text-sm text-gray-600 hover:bg-gray-50 hover:text-navy"
+                            >
+                              {deepSub.label}
+                            </Link>
+                          ))}
+                        </div>
+                      </div>
+                    ) : (
+                      <Link
+                        href={sub.href || '#'}
+                        className="block rounded-md px-4 py-2 text-sm text-gray-600 hover:bg-gray-50 hover:text-navy"
+                      >
+                        {sub.label}
+                      </Link>
+                    )}
+                  </div>
+                ))}
+              </div>
             </div>
           ) : (
             <Link
@@ -102,7 +128,7 @@ export const DesktopNav = () => {
   return (
     <div className="hidden lg:flex lg:items-center lg:gap-6">
       {NAVIGATION_DATA.map((item, idx) => {
-        const isMega = item.label === "Initiatives";
+        const isMega = ["LeadNext Academy", "Politics & Governance Hub"].includes(item.label);
 
         return (
           <div
@@ -112,7 +138,7 @@ export const DesktopNav = () => {
             onMouseLeave={() => setHoveredIndex(null)}
           >
             <Link
-              href={item.label === "Initiatives" ? "/initiatives/youth-leadership-academy" : (item.href || '#')}
+              href={item.label === "LeadNext Academy" ? "/coming-soon" : (item.href || '#')}
               className={`flex items-center gap-1 py-4 font-medium transition-colors ${
                 hoveredIndex === idx ? 'text-gold' : 'text-gray-200 hover:text-white'
               }`}
@@ -132,14 +158,14 @@ export const DesktopNav = () => {
                     isMega ? 'left-0' : 'left-0 w-64'
                   }`}
                 >
-                    {/* Decorator line */}
-                    <div className="absolute top-0 left-0 right-0 h-1 bg-navy" />
-                    
-                    {isMega ? (
-                        <MegaMenu item={item} />
-                    ) : (
-                        <DropdownMenu item={item} />
-                    )}
+                  {/* Decorator line */}
+                  <div className="absolute top-0 left-0 right-0 h-1 bg-navy" />
+                  
+                  {isMega ? (
+                    <MegaMenu item={item} />
+                  ) : (
+                    <DropdownMenu item={item} />
+                  )}
                 </motion.div>
               )}
             </AnimatePresence>

@@ -9,19 +9,19 @@ const TESTIMONIALS = [
     quote: "Governance is about service to the people, not personal gain.",
     author: "Malam Aminu Kano",
     role: "Statesman & Teacher",
-    image: "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c3/Mallam_Aminu_Kano.jpg/440px-Mallam_Aminu_Kano.jpg"
+    image: "https://upload.wikimedia.org/wikipedia/commons/thumb/7/74/Nigerian_Public_Domain_208.jpg/500px-Nigerian_Public_Domain_208.jpg"
   },
   {
     quote: "Show the light, and the people will find the way.",
     author: "Dr. Nnamdi Azikiwe",
     role: "First President of Nigeria",
-    image: "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6b/Nnamdi_Azikiwe.jpg/440px-Nnamdi_Azikiwe.jpg"
+    image: "https://upload.wikimedia.org/wikipedia/commons/b/bb/Nnamdi_Azikiwe_PC_%28cropped%29.jpg"
   },
   {
     quote: "A people’s education is the foundation of their progress.",
     author: "Chief Obafemi Awolowo",
     role: "Statesman & Nationalist",
-    image: "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e0/Obafemi_Awolowo.jpg/440px-Obafemi_Awolowo.jpg"
+    image: "https://upload.wikimedia.org/wikipedia/commons/thumb/7/74/Obafemi_Awolowo.jpg/500px-Obafemi_Awolowo.jpg"
   }
 ];
 

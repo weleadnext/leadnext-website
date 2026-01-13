@@ -55,3 +55,31 @@ export const STATE_CABINET_MEMBERS_QUERY = defineQuery(`*[_type == "stateCabinet
   wikiUrl,
   image
 }`)
+
+export const POLITICAL_PARTIES_QUERY = defineQuery(`*[_type == "politicalParty"] | order(name asc) {
+  _id,
+  name,
+  acronym,
+  image
+}`)
+
+export const LGAS_QUERY = defineQuery(`*[_type == "lga"] | order(name asc) {
+  _id,
+  name,
+  slug,
+  zone,
+  chairman->{name, photo},
+  logo,
+  state->{name, slug}
+}`)
+
+export const LGA_DETAIL_QUERY = defineQuery(`*[_type == "lga" && slug.current == $slug][0] {
+  _id,
+  name,
+  slug,
+  zone,
+  chairman->{name, photo, role, bio},
+  logo,
+  description,
+  state->{name, slug, logo}
+}`)
