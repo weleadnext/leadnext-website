@@ -5,6 +5,23 @@ export const structure = (S: StructureBuilder) =>
   S.list()
     .title('Content')
     .items([
+      // Organization Section
+      S.listItem()
+        .title('Organization')
+        .icon(Building2)
+        .child(
+          S.list()
+            .title('Organization')
+            .items([
+              S.listItem()
+                .title('Team Members')
+                .icon(User)
+                .child(S.documentTypeList('teamMember').title('Team Members')),
+            ])
+        ),
+
+      S.divider(),
+
       // Programs & Applications Section
       S.listItem()
         .title('Programs & Applications')

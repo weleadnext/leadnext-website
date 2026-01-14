@@ -95,7 +95,7 @@ export default function MissionVisionValuesPage() {
 
             <FadeIn delay={0.2} className="relative h-[500px] rounded-2xl overflow-hidden shadow-2xl">
               <Image
-                src="https://images.unsplash.com/photo-1556761175-5973dc0f32e7?auto=format&fit=crop&q=80&w=1000"
+                src="/MISSION STATEMENT.png"
                 alt="Team planning strategy"
                 fill
                 className="object-cover"
@@ -116,7 +116,7 @@ export default function MissionVisionValuesPage() {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
             <FadeIn className="order-2 lg:order-1 relative h-[500px] rounded-2xl overflow-hidden shadow-2xl">
               <Image
-                src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&q=80&w=1000"
+                src="/VISION STATEMENT.png"
                 alt="City skyline representing future vision"
                 fill
                 className="object-cover"

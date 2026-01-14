@@ -36,12 +36,12 @@ export default function OurStoryPage() {
           
           <FadeIn delay={0.2} className="hidden lg:block relative h-[600px] w-full rounded-2xl overflow-hidden border-4 border-white/10 shadow-2xl rotate-3 hover:rotate-0 transition-transform duration-500">
              <Image
-              src="https://images.unsplash.com/photo-1491438590914-bc09fcaaf77a?auto=format&fit=crop&q=80&w=1000"
+              src="/OUR STORY.png"
               alt="Nigerian youth looking forward"
               fill
               className="object-cover"
             />
-            <div className="absolute inset-0 bg-gradient-to-t from-navy/80 via-transparent to-transparent"></div>
+            {/* <div className="absolute inset-0 bg-gradient-to-t from-navy/80 via-transparent to-transparent"></div> */}
           </FadeIn>
         </div>
       </section>
@@ -104,10 +104,10 @@ export default function OurStoryPage() {
         <FadeIn delay={0.2} className="relative rounded-3xl overflow-hidden shadow-2xl bg-navy">
           <div className="absolute inset-0">
              <Image
-              src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&q=80&w=2000"
+              src="/OUR STORY (Background for Join the movement).png"
               alt="Students learning together"
               fill
-              className="object-cover opacity-20"
+              className="object-cover"
             />
              <div className="absolute inset-0 bg-gradient-to-r from-navy via-navy/80 to-navy/40"></div>
           </div>

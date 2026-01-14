@@ -83,3 +83,12 @@ export const LGA_DETAIL_QUERY = defineQuery(`*[_type == "lga" && slug.current ==
   description,
   state->{name, slug, logo}
 }`)
+
+export const TEAM_MEMBERS_QUERY = defineQuery(`*[_type == "teamMember"] | order(order asc) {
+  _id,
+  name,
+  role,
+  credentials,
+  image,
+  bio
+}`)

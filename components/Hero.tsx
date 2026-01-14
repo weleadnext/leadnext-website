@@ -8,7 +8,7 @@ export const Hero = () => {
       {/* Background Image Placeholder - In production, use next/image with a real photo */}
       <div 
         className="absolute inset-0 bg-cover bg-center z-0"
-        style={{ backgroundImage: 'url("https://images.unsplash.com/photo-1573164713988-8665fc963095?auto=format&fit=crop&q=80")' }} 
+        style={{ backgroundImage: 'url("/HOME PAGE.png?auto=format&fit=crop&q=80")' }} 
       />
       
       {/* Gradient Overlay */}

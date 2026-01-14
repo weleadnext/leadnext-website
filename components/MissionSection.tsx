@@ -13,7 +13,7 @@ export const MissionSection = () => {
           <FadeIn className="relative">
             <div className="relative rounded-2xl overflow-hidden shadow-2xl aspect-[4/3]">
               <Image
-                src="https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?auto=format&fit=crop&q=80"
+                src="/HOME PAGE (Bridging the Gap..).png"
                 alt="Youth collaboration"
                 fill
                 className="object-cover"
