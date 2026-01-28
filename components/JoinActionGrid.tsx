@@ -9,21 +9,24 @@ const ACTIONS = [
     description: "Join our network of volunteers and help organize civic events in your local community.",
     icon: Users,
     color: "bg-teal",
-    cta: "Join the Team"
+    cta: "Join the Team",
+    href: "/coming-soon"
   },
   {
     title: "Donate",
     description: "Support our mission to train 10,000 youth leaders by 2025. Every contribution counts.",
     icon: Heart,
     color: "bg-gold",
-    cta: "Make a Donation"
+    cta: "Make a Donation",
+    href: "/donate"
   },
   {
     title: "Partner",
     description: "Collaborate with us to drive policy change and institutional reform.",
     icon: Handshake,
     color: "bg-navy",
-    cta: "Work With Us"
+    cta: "Work With Us",
+    href: "/coming-soon"
   }
 ];
 
@@ -60,7 +63,7 @@ export const JoinActionGrid = () => {
                     {action.description}
                  </p>
 
-                 <a href="#" className="inline-flex items-center gap-2 font-bold text-navy group-hover:gap-3 transition-all">
+                 <a href={action.href} className="inline-flex items-center gap-2 font-bold text-navy group-hover:gap-3 transition-all">
                     {action.cta} <ArrowRight className="h-4 w-4 text-teal" />
                  </a>
               </FadeIn>

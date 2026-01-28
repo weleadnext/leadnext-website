@@ -9,6 +9,26 @@ export const CABINET_MEMBERS_QUERY = defineQuery(`*[_type == "cabinetMember"] | 
   image
 }`)
 
+export const SENATE_CABINET_MEMBERS_QUERY = defineQuery(`*[_type == "senateCabinetMember"] | order(name asc) {
+  _id,
+  name,
+  portfolio,
+  wikiUrl,
+  senatorialZone,
+  "stateName": state->name,
+  image
+}`)
+
+export const HOUSE_CABINET_MEMBERS_QUERY = defineQuery(`*[_type == "houseCabinetMember"] | order(name asc) {
+  _id,
+  name,
+  portfolio,
+  wikiUrl,
+  constituency,
+  "stateName": state->name,
+  image
+}`)
+
 export const SECURITY_HEADS_QUERY = defineQuery(`*[_type == "securityHead"] | order(agency asc) {
   _id,
   agency,
@@ -56,10 +76,20 @@ export const STATE_CABINET_MEMBERS_QUERY = defineQuery(`*[_type == "stateCabinet
   image
 }`)
 
+export const STATE_ASSEMBLY_CABINET_MEMBERS_QUERY = defineQuery(`*[_type == "stateAssemblyCabinetMember" && state->slug.current == $slug] | order(name asc) {
+  _id,
+  name,
+  portfolio,
+  wikiUrl,
+  constituency,
+  image
+}`)
+
 export const POLITICAL_PARTIES_QUERY = defineQuery(`*[_type == "politicalParty"] | order(name asc) {
   _id,
   name,
   acronym,
+  description,
   image
 }`)
 

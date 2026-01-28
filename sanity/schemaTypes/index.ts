@@ -13,7 +13,28 @@ import federalMda from '../schemas/federal-mda'
 import stateCabinetMember from '../schemas/state-cabinet-member'
 import politicalParty from '../schemas/political-party'
 import teamMember from '../schemas/team-member'
+import senateCabinetMember from '../schemas/senate-cabinet-member'
+import houseCabinetMember from '../schemas/house-cabinet-member'
+import stateAssemblyCabinetMember from '../schemas/state-assembly-cabinet-member'
 
 export const schema: { types: SchemaTypeDefinition[] } = {
-  types: [zone, state, lga, official, project, program, application, mailingListSubscription, cabinetMember, securityHead, federalMda, stateCabinetMember, politicalParty, teamMember],
+  types: [
+    zone, 
+    state, 
+    lga, 
+    official, 
+    project, 
+    program, 
+    application, 
+    mailingListSubscription, 
+    cabinetMember, 
+    securityHead, 
+    federalMda, 
+    stateCabinetMember, 
+    politicalParty, 
+    teamMember,
+    senateCabinetMember,
+    houseCabinetMember,
+    stateAssemblyCabinetMember
+  ],
 }

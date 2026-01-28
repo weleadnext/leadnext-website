@@ -49,7 +49,7 @@ export const MissionSection = () => {
               ))}
             </ul>
 
-            <a href="/about" className="inline-flex items-center gap-2 text-navy font-bold hover:gap-3 transition-all group">
+            <a href="/about/our-story" className="inline-flex items-center gap-2 text-navy font-bold hover:gap-3 transition-all group">
               Read Our Full Story <ArrowRight className="h-4 w-4 text-gold group-hover:text-navy" />
             </a>
           </FadeIn>

@@ -1,5 +1,5 @@
 import { StructureBuilder } from 'sanity/structure'
-import { FileText, MapPin, Building2, User, GraduationCap, Inbox, CheckCircle2, Clock, XCircle, Eye, Mail, Briefcase, ShieldAlert, Library, Flag } from 'lucide-react'
+import { FileText, MapPin, Building2, User, GraduationCap, Inbox, CheckCircle2, Clock, XCircle, Eye, Mail, Briefcase, ShieldAlert, Library, Flag, Landmark, Gavel } from 'lucide-react'
 
 export const structure = (S: StructureBuilder) =>
   S.list()
@@ -145,41 +145,80 @@ export const structure = (S: StructureBuilder) =>
 
       S.divider(),
 
-      // Officials & Projects Section
+      // Executive Arm Section
       S.listItem()
-        .title('Officials')
-        .icon(User)
-        .child(S.documentTypeList('official').title('Officials')),
-      
-      S.listItem()
-        .title('Cabinet Members (Federal)')
+        .title('Executive Arm')
         .icon(Briefcase)
-        .child(S.documentTypeList('cabinetMember').title('Federal Cabinet')),
+        .child(
+          S.list()
+            .title('Executive Arm')
+            .items([
+              S.listItem()
+                .title('Federal Cabinet')
+                .icon(Briefcase)
+                .child(S.documentTypeList('cabinetMember').title('Federal Cabinet')),
+              S.listItem()
+                .title('State Cabinets')
+                .icon(Briefcase)
+                .child(S.documentTypeList('stateCabinetMember').title('State Cabinets')),
+              S.listItem()
+                .title('Security Heads')
+                .icon(ShieldAlert)
+                .child(S.documentTypeList('securityHead').title('Security Heads')),
+              S.listItem()
+                .title('Federal MDAs')
+                .icon(Library)
+                .child(S.documentTypeList('federalMda').title('Federal MDAs')),
+            ])
+        ),
 
+      // Legislative Arm Section
       S.listItem()
-        .title('Cabinet Members (State)')
-        .icon(Briefcase)
-        .child(S.documentTypeList('stateCabinetMember').title('State Cabinet')),
-      
+        .title('Legislative Arm')
+        .icon(Gavel)
+        .child(
+          S.list()
+            .title('Legislative Arm')
+            .items([
+              S.listItem()
+                .title('Senate Leadership')
+                .icon(Landmark)
+                .child(S.documentTypeList('senateCabinetMember').title('Senate Leadership')),
+              S.listItem()
+                .title('House Leadership')
+                .icon(Landmark)
+                .child(S.documentTypeList('houseCabinetMember').title('House Leadership')),
+              S.listItem()
+                .title('State Assembly Leadership')
+                .icon(Landmark)
+                .child(S.documentTypeList('stateAssemblyCabinetMember').title('State Assembly Leadership')),
+            ])
+        ),
+
+      S.divider(),
+
+      // General Data
       S.listItem()
-        .title('Security Heads')
-        .icon(ShieldAlert)
-        .child(S.documentTypeList('securityHead').title('Security Heads')),
-      
-      S.listItem()
-        .title('Federal MDAs')
-        .icon(Library)
-        .child(S.documentTypeList('federalMda').title('Federal MDAs')),
-      
-      S.listItem()
-        .title('Projects')
+        .title('General Data')
         .icon(FileText)
-        .child(S.documentTypeList('project').title('Projects')),
-      
-      S.listItem()
-        .title('Political Parties')
-        .icon(Flag)
-        .child(S.documentTypeList('politicalParty').title('Political Parties')),
+        .child(
+          S.list()
+            .title('General Data')
+            .items([
+              S.listItem()
+                .title('Officials (General)')
+                .icon(User)
+                .child(S.documentTypeList('official').title('Officials')),
+              S.listItem()
+                .title('Projects')
+                .icon(FileText)
+                .child(S.documentTypeList('project').title('Projects')),
+              S.listItem()
+                .title('Political Parties')
+                .icon(Flag)
+                .child(S.documentTypeList('politicalParty').title('Political Parties')),
+            ])
+        ),
 
       S.divider(),
 
@@ -194,4 +233,3 @@ export const structure = (S: StructureBuilder) =>
             .defaultOrdering([{ field: 'subscribedAt', direction: 'desc' }])
         ),
     ])
-

@@ -59,10 +59,10 @@ export const Footer = () => {
         <FadeIn delay={0.1}>
           <h4 className="font-serif text-lg font-bold text-gold mb-6">Quick Links</h4>
           <ul className="space-y-3 text-sm text-gray-400">
-            <li><Link href="/about" className="hover:text-white transition-colors">About Us</Link></li>
-            <li><Link href="/projects" className="hover:text-white transition-colors">Our Projects</Link></li>
-            <li><Link href="/officials" className="hover:text-white transition-colors">Government Officials</Link></li>
-            <li><Link href="/impact" className="hover:text-white transition-colors">Impact Reports</Link></li>
+            <li><Link href="/about/mission-vision-values" className="hover:text-white transition-colors">About Us</Link></li>
+            <li><Link href="/coming-soon" className="hover:text-white transition-colors">Our Projects</Link></li>
+            <li><Link href="/coming-soon" className="hover:text-white transition-colors">Government Officials</Link></li>
+            <li><Link href="/coming-soon" className="hover:text-white transition-colors">Impact Reports</Link></li>
             <li><Link href="/donate" className="hover:text-white transition-colors">Donate</Link></li>
           </ul>
         </FadeIn>
@@ -85,11 +85,11 @@ export const Footer = () => {
           <ul className="space-y-4 text-sm text-gray-400">
             <li className="flex gap-3">
               <MapPin className="h-5 w-5 shrink-0 text-teal" />
-              <span>123 Civic Way, Central Business District, Abuja, Nigeria</span>
+              <span>Kaduna, Nigeria</span>
             </li>
             <li className="flex gap-3">
               <Mail className="h-5 w-5 shrink-0 text-teal" />
-              <a href="mailto:info@leadnext.ng" className="hover:text-white">info@leadnext.ng</a>
+              <a href="mailto:weleadnext@gmail.com" className="hover:text-white">weleadnext@gmail.com</a>
             </li>
             <li className="flex gap-3">
               <Phone className="h-5 w-5 shrink-0 text-teal" />

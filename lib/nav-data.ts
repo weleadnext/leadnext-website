@@ -57,17 +57,16 @@ export const NAVIGATION_DATA: NavItem[] = [
             children: [
               {
                 label: "Demographics (Population, Income, Diversity)",
-                href: "#",
+                href: "/work-in-progress",
               },
-              { label: "Federal Character Appointments", href: "#" },
-              { label: "Resources and IGRs", href: "#" },
+              { label: "Resources and IGRs", href: "/work-in-progress" },
             ],
           },
-          { label: "Political Parties", href: "/initiatives/politics-and-governance/political-heart/political-parties" },
           {
             label: "Elections",
             href: "/initiatives/politics-and-governance/elections",
             children: [
+              { label: "Political Parties", href: "/initiatives/politics-and-governance/political-heart/political-parties" },
               { label: "Voter Registration & INEC Data", href: "/initiatives/politics-and-governance/elections/voter-registration" },
               { label: "INEC Calendar", href: "/initiatives/politics-and-governance/elections/inec-calendar" },
               { label: "Results Tracker", href: "/initiatives/politics-and-governance/elections/results-tracker" },
@@ -76,7 +75,7 @@ export const NAVIGATION_DATA: NavItem[] = [
         ],
       },
       {
-        label: "Executive Eye",
+        label: "Executive Head",
         children: [
           { label: "Federal Government", href: "/initiatives/politics-and-governance/executive-eye/federal" },
           { label: "State Government", href: "/initiatives/politics-and-governance/executive-eye/state" },
@@ -86,10 +85,9 @@ export const NAVIGATION_DATA: NavItem[] = [
       {
         label: "Legislative Arm",
         children: [
-          { label: "Senate", href: "#" },
-          { label: "House of Reps", href: "#" },
-          { label: "State Assemblies", href: "#" },
-          { label: "LG Councils", href: "#" },
+          { label: "Senate", href: "/initiatives/politics-and-governance/legislative/senate" },
+          { label: "House of Reps", href: "/initiatives/politics-and-governance/legislative/house-of-reps" },
+          { label: "State Assemblies", href: "/initiatives/politics-and-governance/legislative/state-assemblies" },
         ],
       },
     ],
@@ -156,7 +154,7 @@ export const NAVIGATION_DATA: NavItem[] = [
       {
         label: "Support Us",
         children: [
-          { label: "Donate", href: "#" },
+          { label: "Donate", href: "/donate" },
           { label: "Sponsor a Program", href: "#" },
           { label: "Fund Community Projects", href: "#" },
           { label: "Sponsor a Fellow", href: "#" },

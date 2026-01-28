@@ -12,7 +12,7 @@ interface MobileNavProps {
   onClose: () => void;
 }
 
-const MobileNavItem = ({ item, depth = 0 }: { item: NavItem; depth?: number }) => {
+const MobileNavItem = ({ item, depth = 0, onClose }: { item: NavItem; depth?: number; onClose: () => void }) => {
   const [isExpanded, setIsExpanded] = useState(false);
   const hasChildren = item.children && item.children.length > 0;
 
@@ -35,7 +35,7 @@ const MobileNavItem = ({ item, depth = 0 }: { item: NavItem; depth?: number }) =
           >
             <span className={depth === 0 ? "font-serif text-lg" : "text-base"}>
                 {item.label === "Initiatives" ? (
-                   <Link href="/initiatives/youth-leadership-academy" onClick={(e) => e.stopPropagation()}>
+                   <Link href="/initiatives/youth-leadership-academy" onClick={(e) => { e.stopPropagation(); onClose(); }}>
                      {item.label}
                    </Link>
                 ) : (
@@ -59,7 +59,7 @@ const MobileNavItem = ({ item, depth = 0 }: { item: NavItem; depth?: number }) =
               >
                 <div className="flex flex-col">
                   {item.children!.map((child, idx) => (
-                    <MobileNavItem key={idx} item={child} depth={depth + 1} />
+                    <MobileNavItem key={idx} item={child} depth={depth + 1} onClose={onClose} />
                   ))}
                 </div>
               </motion.div>
@@ -71,6 +71,7 @@ const MobileNavItem = ({ item, depth = 0 }: { item: NavItem; depth?: number }) =
           href={item.href || '#'}
           className="block py-4 text-gray-600 hover:text-navy"
           style={{ paddingLeft: depth * 16 }}
+          onClick={onClose}
         >
           {item.label}
         </Link>
@@ -121,7 +122,7 @@ export const MobileNav = ({ isOpen, onClose }: MobileNavProps) => {
 
             <div className="flex flex-col">
               {NAVIGATION_DATA.map((item, idx) => (
-                <MobileNavItem key={idx} item={item} />
+                <MobileNavItem key={idx} item={item} onClose={onClose} />
               ))}
             </div>
 

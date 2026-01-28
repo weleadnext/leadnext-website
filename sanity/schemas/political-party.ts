@@ -18,6 +18,13 @@ export default defineType({
       validation: (Rule) => Rule.required(),
     }),
     defineField({
+      name: 'description',
+      title: 'Short Description',
+      type: 'text',
+      rows: 3,
+      description: 'Optional brief description or slogan of the party.',
+    }),
+    defineField({
       name: 'image',
       title: 'Image',
       type: 'image',
