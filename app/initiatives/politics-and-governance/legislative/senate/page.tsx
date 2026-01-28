@@ -14,7 +14,7 @@ import Link from 'next/link';
 export default function SenateHub() {
   const items = [
     {
-      title: "The Cabinet",
+      title: "Leadership",
       description: "Leadership of the Senate, including the Senate President and Principal Officers.",
       icon: Users,
       href: "/initiatives/politics-and-governance/legislative/senate/cabinet",

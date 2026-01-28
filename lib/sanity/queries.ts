@@ -9,7 +9,7 @@ export const TEAM_MEMBERS_QUERY = defineQuery(`*[_type == "teamMember"] | order(
   bio
 }`)
 
-export const CABINET_MEMBERS_QUERY = defineQuery(`*[_type == "cabinetMember"] | order(name asc) {
+export const CABINET_MEMBERS_QUERY = defineQuery(`*[_type == "cabinetMember"] | order(order asc, name asc) {
   _id,
   name,
   portfolio,
@@ -18,7 +18,7 @@ export const CABINET_MEMBERS_QUERY = defineQuery(`*[_type == "cabinetMember"] | 
   image
 }`)
 
-export const SENATE_CABINET_MEMBERS_QUERY = defineQuery(`*[_type == "senateCabinetMember"] | order(name asc) {
+export const SENATE_CABINET_MEMBERS_QUERY = defineQuery(`*[_type == "senateCabinetMember"] | order(order asc, name asc) {
   _id,
   name,
   portfolio,
@@ -28,7 +28,7 @@ export const SENATE_CABINET_MEMBERS_QUERY = defineQuery(`*[_type == "senateCabin
   image
 }`)
 
-export const HOUSE_CABINET_MEMBERS_QUERY = defineQuery(`*[_type == "houseCabinetMember"] | order(name asc) {
+export const HOUSE_CABINET_MEMBERS_QUERY = defineQuery(`*[_type == "houseCabinetMember"] | order(order asc, name asc) {
   _id,
   name,
   portfolio,
@@ -38,7 +38,7 @@ export const HOUSE_CABINET_MEMBERS_QUERY = defineQuery(`*[_type == "houseCabinet
   image
 }`)
 
-export const SECURITY_HEADS_QUERY = defineQuery(`*[_type == "securityHead"] | order(agency asc) {
+export const SECURITY_HEADS_QUERY = defineQuery(`*[_type == "securityHead"] | order(order asc, agency asc) {
   _id,
   agency,
   position,
@@ -48,7 +48,7 @@ export const SECURITY_HEADS_QUERY = defineQuery(`*[_type == "securityHead"] | or
   image
 }`)
 
-export const FEDERAL_MDAS_QUERY = defineQuery(`*[_type == "federalMda"] | order(agencyName asc) {
+export const FEDERAL_MDAS_QUERY = defineQuery(`*[_type == "federalMda"] | order(order asc, agencyName asc) {
   _id,
   sector,
   supervisingMinistry,
@@ -77,7 +77,7 @@ export const STATE_DETAIL_QUERY = defineQuery(`*[_type == "state" && slug.curren
   zone->{name}
 }`)
 
-export const STATE_CABINET_MEMBERS_QUERY = defineQuery(`*[_type == "stateCabinetMember" && state->slug.current == $slug] | order(name asc) {
+export const STATE_CABINET_MEMBERS_QUERY = defineQuery(`*[_type == "stateCabinetMember" && state->slug.current == $slug] | order(order asc, name asc) {
   _id,
   name,
   portfolio,
@@ -85,7 +85,7 @@ export const STATE_CABINET_MEMBERS_QUERY = defineQuery(`*[_type == "stateCabinet
   image
 }`)
 
-export const STATE_ASSEMBLY_CABINET_MEMBERS_QUERY = defineQuery(`*[_type == "stateAssemblyCabinetMember" && state->slug.current == $slug] | order(name asc) {
+export const STATE_ASSEMBLY_CABINET_MEMBERS_QUERY = defineQuery(`*[_type == "stateAssemblyCabinetMember" && state->slug.current == $slug] | order(order asc, name asc) {
   _id,
   name,
   portfolio,
@@ -94,7 +94,7 @@ export const STATE_ASSEMBLY_CABINET_MEMBERS_QUERY = defineQuery(`*[_type == "sta
   image
 }`)
 
-export const POLITICAL_PARTIES_QUERY = defineQuery(`*[_type == "politicalParty"] | order(name asc) {
+export const POLITICAL_PARTIES_QUERY = defineQuery(`*[_type == "politicalParty"] | order(order asc, name asc) {
   _id,
   name,
   acronym,

@@ -21,13 +21,13 @@ export const NAVIGATION_DATA: NavItem[] = [
     children: [
       {
         label: "Short Courses & Trainings",
-        href: "/coming-soon#short-courses",
+        href: "/work-in-progress",
         children: [
-          { label: "Environmental Stewardship", href: "/coming-soon#short-courses" },
-          { label: "Skills & Entrepreneurship", href: "/coming-soon#short-courses" },
-          { label: "Civics & Governance", href: "/coming-soon#short-courses" },
-          { label: "Politics & Community", href: "/coming-soon#short-courses" },
-          { label: "Ethics & Social Responsibilities", href: "/coming-soon#short-courses" },
+          { label: "Environmental Stewardship", href: "/work-in-progress" },
+          { label: "Skills & Entrepreneurship", href: "/work-in-progress" },
+          { label: "Civics & Governance", href: "/work-in-progress" },
+          { label: "Politics & Community", href: "/work-in-progress" },
+          { label: "Ethics & Social Responsibilities", href: "/work-in-progress" },
         ],
       },
       {
@@ -40,8 +40,8 @@ export const NAVIGATION_DATA: NavItem[] = [
       },
       {
         label: "Scholarships",
-        href: "/coming-soon#scholarships",
-        children: [{ label: "Apply", href: "/coming-soon#scholarships" }],
+        href: "/work-in-progress",
+        children: [{ label: "Apply", href: "/work-in-progress" }],
       },
     ],
   },
@@ -94,28 +94,28 @@ export const NAVIGATION_DATA: NavItem[] = [
   },
   {
     label: "Civics Centre",
-    href: "/coming-soon#civics-center",
+    href: "/work-in-progress",
     children: [
-      { label: "The Citizen", href: "/coming-soon#civics-center" },
-      { label: "The Nation", href: "/coming-soon#civics-center" },
-      { label: "Social Contract", href: "/coming-soon#civics-center" },
+      { label: "The Citizen", href: "/work-in-progress" },
+      { label: "The Nation", href: "/work-in-progress" },
+      { label: "Social Contract", href: "/work-in-progress" },
     ],
   },
   {
     label: "Citizen Library",
-    href: "/coming-soon#citizen-library",
+    href: "/work-in-progress",
     children: [
-      { label: "The Nigerian Story", href: "/coming-soon#citizen-library" },
-      { label: "Publications", href: "/coming-soon#citizen-library" },
-      { label: "Policy Briefs", href: "/coming-soon#citizen-library" },
-      { label: "Civic Education", href: "/coming-soon#citizen-library" },
-      { label: "Blog", href: "/coming-soon#citizen-library" },
+      { label: "The Nigerian Story", href: "/work-in-progress" },
+      { label: "Publications", href: "/work-in-progress" },
+      { label: "Policy Briefs", href: "/work-in-progress" },
+      { label: "Civic Education", href: "/work-in-progress" },
+      { label: "Blog", href: "/work-in-progress" },
       {
         label: "Media",
         children: [
-          { label: "Podcast", href: "#" },
-          { label: "Videos & Documentaries", href: "#" },
-          { label: "Photo Gallery", href: "#" },
+          { label: "Podcast", href: "/work-in-progress" },
+          { label: "Videos & Documentaries", href: "/work-in-progress" },
+          { label: "Photo Gallery", href: "/work-in-progress" },
         ],
       },
     ],
@@ -123,27 +123,15 @@ export const NAVIGATION_DATA: NavItem[] = [
   {
     label: "Impact",
     children: [
-      { label: "Youth Impact Statistics Dashboard", href: "#" },
-      { label: "Testimonials", href: "#" },
-      { label: "National Reach Map", href: "#" },
-      { label: "Annual Reports", href: "#" },
+      { label: "Youth Impact Statistics Dashboard", href: "/work-in-progress" },
+      { label: "Testimonials", href: "/work-in-progress" },
+      { label: "National Reach Map", href: "/work-in-progress" },
+      { label: "Annual Reports", href: "/work-in-progress" },
       {
         label: "LeadNext Network",
         children: [
-          {
-            label: "Partners",
-            children: [
-              { label: "Private Organizations", href: "#" },
-              { label: "Nonprofit Organizations", href: "#" },
-            ],
-          },
-          {
-            label: "Cohorts",
-            children: [
-              { label: "Training Alumni", href: "#" },
-              { label: "Fellows", href: "#" },
-            ],
-          },
+          { label: "Partners", href: "/work-in-progress" },
+          { label: "Cohorts", href: "/work-in-progress" },
         ],
       },
     ],
@@ -155,25 +143,25 @@ export const NAVIGATION_DATA: NavItem[] = [
         label: "Support Us",
         children: [
           { label: "Donate", href: "/donate" },
-          { label: "Sponsor a Program", href: "#" },
-          { label: "Fund Community Projects", href: "#" },
-          { label: "Sponsor a Fellow", href: "#" },
+          { label: "Sponsor a Program", href: "/work-in-progress" },
+          { label: "Fund Community Projects", href: "/work-in-progress" },
+          { label: "Sponsor a Fellow", href: "/work-in-progress" },
         ],
       },
       {
         label: "Work with Us",
         children: [
-          { label: "Volunteer", href: "#" },
-          { label: "Become a Mentor", href: "#" },
-          { label: "Become a Partner", href: "#" },
-          { label: "Careers & Internships", href: "#" },
+          { label: "Volunteer", href: "/work-in-progress" },
+          { label: "Become a Mentor", href: "/work-in-progress" },
+          { label: "Become a Partner", href: "/work-in-progress" },
+          { label: "Careers & Internships", href: "/work-in-progress" },
         ],
       },
       {
         label: "Contact",
         children: [
           { label: "Email Us", href: "mailto:weleadnext@gmail.com" },
-          { label: "Contact Form", href: "#" },
+          { label: "Contact Form", href: "/work-in-progress" },
         ],
       },
     ],

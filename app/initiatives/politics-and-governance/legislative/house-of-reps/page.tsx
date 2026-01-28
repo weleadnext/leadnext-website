@@ -14,7 +14,7 @@ import Link from 'next/link';
 export default function HouseOfRepsHub() {
   const items = [
     {
-      title: "The Cabinet",
+      title: "Leadership",
       description: "Leadership of the House, including the Speaker and Principal Officers.",
       icon: Users,
       href: "/initiatives/politics-and-governance/legislative/house-of-reps/cabinet",

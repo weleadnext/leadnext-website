@@ -6,18 +6,6 @@ export default defineType({
   type: 'document',
   fields: [
     defineField({
-      name: 'sector',
-      title: 'Sector',
-      type: 'string',
-      validation: (Rule) => Rule.required(),
-    }),
-    defineField({
-      name: 'supervisingMinistry',
-      title: 'Supervising Ministry',
-      type: 'string',
-      validation: (Rule) => Rule.required(),
-    }),
-    defineField({
       name: 'agencyName',
       title: 'Agency Name',
       type: 'string',
@@ -29,22 +17,41 @@ export default defineType({
       type: 'string',
     }),
     defineField({
+      name: 'order',
+      title: 'Display Order',
+      type: 'number',
+      description: 'Lower numbers appear first (e.g., 1, 2, 3)',
+    }),
+    defineField({
       name: 'headName',
-      title: 'Head Name',
+      title: 'Head of Agency',
       type: 'string',
-      validation: (Rule) => Rule.required(),
     }),
     defineField({
       name: 'headTitle',
-      title: 'Head Title',
+      title: 'Title of Head',
       type: 'string',
-      validation: (Rule) => Rule.required(),
+      description: 'e.g., Director General, Executive Secretary',
+    }),
+    defineField({
+      name: 'sector',
+      title: 'Sector',
+      type: 'string',
+      options: {
+        list: [
+          'Economy', 'Education', 'Health', 'Infrastructure', 'Security', 'Social Development', 'Agriculture', 'Technology', 'Other'
+        ]
+      }
+    }),
+    defineField({
+      name: 'supervisingMinistry',
+      title: 'Supervising Ministry',
+      type: 'string',
     }),
     defineField({
       name: 'stateOfOrigin',
-      title: 'State of Origin',
-      type: 'reference',
-      to: [{type: 'state'}],
+      title: 'State of Origin (Head)',
+      type: 'string',
     }),
     defineField({
       name: 'sourceUrl',
@@ -53,9 +60,8 @@ export default defineType({
     }),
     defineField({
       name: 'logo',
-      title: 'MDA Logo',
+      title: 'Agency Logo',
       type: 'image',
-      validation: (Rule) => Rule.required().error('MDA Logo is mandatory'),
       options: {
         hotspot: true,
       },

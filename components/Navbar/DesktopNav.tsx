@@ -74,7 +74,7 @@ const DropdownMenu = ({ item }: { item: NavItem }) => {
                 <ChevronRight className="h-4 w-4" />
               </button>
               {/* Recursive or simple list for sub-items */}
-              <div className="hidden group-hover/sub:block absolute left-full top-0 ml-2 w-56 rounded-md bg-white p-2 shadow-lg ring-1 ring-black/5">
+              <div className="hidden group-hover/sub:block absolute left-full top-0 ml-2 w-56 rounded-md bg-white p-2 shadow-lg ring-1 ring-black/5 before:absolute before:-left-2 before:top-0 before:h-full before:w-2 before:content-['']">
                 {child.children.map((sub, sIdx) => (
                   <div key={sIdx} className="relative group/deep">
                     {sub.children ? (
@@ -84,7 +84,7 @@ const DropdownMenu = ({ item }: { item: NavItem }) => {
                           {sub.label}
                           <ChevronRight className="h-4 w-4" />
                         </button>
-                        <div className="hidden group-hover/deep:block absolute left-full top-0 ml-2 w-56 rounded-md bg-white p-2 shadow-lg ring-1 ring-black/5">
+                        <div className="hidden group-hover/deep:block absolute left-full top-0 ml-2 w-56 rounded-md bg-white p-2 shadow-lg ring-1 ring-black/5 before:absolute before:-left-2 before:top-0 before:h-full before:w-2 before:content-['']">
                           {sub.children.map((deepSub, dIdx) => (
                             <Link
                               key={dIdx}

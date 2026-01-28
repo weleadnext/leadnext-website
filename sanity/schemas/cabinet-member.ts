@@ -18,6 +18,12 @@ export default defineType({
       validation: (Rule) => Rule.required(),
     }),
     defineField({
+      name: 'order',
+      title: 'Display Order',
+      type: 'number',
+      description: 'Lower numbers appear first (e.g., 1, 2, 3)',
+    }),
+    defineField({
       name: 'wikiUrl',
       title: 'Wikipedia URL',
       type: 'url',
