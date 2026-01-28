@@ -1,0 +1,25 @@
+
+> leadnext@0.1.0 build
+> next build
+
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+   ▲ Next.js 16.0.8 (Turbopack)
+   - Environments: .env
+
+   Creating an optimized production build ...
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+ ✓ Compiled successfully in 24.1s
+   Running TypeScript ...
+Failed to compile.
+
+./sanity/desk/structure.ts:174:23
+Type error: Cannot find name 'PieChart'.
+
+[0m [90m 172 |[39m               [33mS[39m[33m.[39mlistItem()
+ [90m 173 |[39m                 [33m.[39mtitle([32m'Federal Budget'[39m)
+[31m[1m>[22m[39m[90m 174 |[39m                 [33m.[39micon([33mPieChart[39m)
+ [90m     |[39m                       [31m[1m^[22m[39m
+ [90m 175 |[39m                 [33m.[39mchild([33mS[39m[33m.[39mdocumentTypeList([32m'federalBudget'[39m)[33m.[39mtitle([32m'Federal Budget'[39m))[33m,[39m
+ [90m 176 |[39m             ])
+ [90m 177 |[39m         )[33m,[39m[0m
+Next.js build worker exited with code: 1 and signal: null

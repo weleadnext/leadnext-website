@@ -1,5 +1,14 @@
 import { defineQuery } from 'next-sanity'
 
+export const TEAM_MEMBERS_QUERY = defineQuery(`*[_type == "teamMember"] | order(order asc) {
+  _id,
+  name,
+  role,
+  credentials,
+  image,
+  bio
+}`)
+
 export const CABINET_MEMBERS_QUERY = defineQuery(`*[_type == "cabinetMember"] | order(name asc) {
   _id,
   name,
@@ -35,7 +44,7 @@ export const SECURITY_HEADS_QUERY = defineQuery(`*[_type == "securityHead"] | or
   position,
   incumbent,
   publicProfileUrl,
-  stateOfOrigin,
+  "stateOfOrigin": stateOfOrigin->name,
   image
 }`)
 
@@ -114,11 +123,12 @@ export const LGA_DETAIL_QUERY = defineQuery(`*[_type == "lga" && slug.current ==
   state->{name, slug, logo}
 }`)
 
-export const TEAM_MEMBERS_QUERY = defineQuery(`*[_type == "teamMember"] | order(order asc) {
+export const FEDERAL_BUDGET_QUERY = defineQuery(`*[_type == "federalBudget"] | order(allocation desc) {
   _id,
-  name,
-  role,
-  credentials,
-  image,
-  bio
+  year,
+  budgetType,
+  sector,
+  allocation,
+  percentage,
+  notes
 }`)
