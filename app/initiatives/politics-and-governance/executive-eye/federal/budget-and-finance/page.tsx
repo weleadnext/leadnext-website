@@ -4,18 +4,24 @@ import { FederalBudgetDashboard } from './FederalBudgetDashboard';
 
 export const revalidate = 60;
 
-interface BudgetEntry {
-  _id: string;
-  year: string;
-  budgetType: 'Functional' | 'Economic';
+export interface BudgetAllocation {
   sector: string;
+  budgetType: 'Functional' | 'Economic';
   allocation: number;
   percentage: number;
   notes?: string;
 }
 
-export default async function FederalBudgetPage() {
-  const budgetData = await client.fetch<BudgetEntry[]>(FEDERAL_BUDGET_QUERY);
+export interface FederalBudgetDoc {
+  _id: string;
+  year: string;
+  title?: string;
+  totalAmount: number;
+  status?: string;
+  allocations?: BudgetAllocation[];
+}
 
-  return <FederalBudgetDashboard budgetData={budgetData} />;
+export default async function FederalBudgetPage() {
+  const budgetDocs = await client.fetch<FederalBudgetDoc[]>(FEDERAL_BUDGET_QUERY);
+  return <FederalBudgetDashboard budgetDocs={budgetDocs} />;
 }

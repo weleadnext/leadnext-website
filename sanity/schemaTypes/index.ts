@@ -37,6 +37,6 @@ export const schema: { types: SchemaTypeDefinition[] } = {
     senateCabinetMember,
     houseCabinetMember,
     stateAssemblyCabinetMember,
-    federalBudget
+    federalBudget,
   ],
 }

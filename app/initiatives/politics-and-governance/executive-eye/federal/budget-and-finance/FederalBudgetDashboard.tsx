@@ -18,19 +18,10 @@ import {
   Filter 
 } from 'lucide-react';
 import Link from 'next/link';
-
-interface BudgetEntry {
-  _id: string;
-  year: string;
-  budgetType: 'Functional' | 'Economic';
-  sector: string;
-  allocation: number;
-  percentage: number;
-  notes?: string;
-}
+import { FederalBudgetDoc } from './page';
 
 interface FederalBudgetDashboardProps {
-  budgetData: BudgetEntry[];
+  budgetDocs: FederalBudgetDoc[];
 }
 
 const COLORS = [
@@ -38,55 +29,85 @@ const COLORS = [
   '#82ca9d', '#ffc658', '#8dd1e1', '#a4de6c', '#d0ed57'
 ];
 
-export const FederalBudgetDashboard = ({ budgetData }: FederalBudgetDashboardProps) => {
-  // Get unique years and sort descending
+export const FederalBudgetDashboard = ({ budgetDocs }: FederalBudgetDashboardProps) => {
+  // Extract available years from documents
   const years = useMemo(() => {
-    const uniqueYears = new Set(budgetData.map(b => b.year));
-    return Array.from(uniqueYears).sort().reverse();
-  }, [budgetData]);
+    return budgetDocs.map(doc => doc.year).sort().reverse();
+  }, [budgetDocs]);
 
-  const [selectedYear, setSelectedYear] = useState<string>(years[0] || '2026');
+  const [selectedYear, setSelectedYear] = useState<string>(years[0] || '');
 
-  // Filter data by year
-  const yearData = useMemo(() => {
-    return budgetData.filter(b => b.year === selectedYear);
-  }, [budgetData, selectedYear]);
+  // Get the single document for the selected year
+  const selectedBudget = useMemo(() => {
+    return budgetDocs.find(doc => doc.year === selectedYear);
+  }, [budgetDocs, selectedYear]);
 
-  // Process data for Functional Budget Pie Chart
+  // Handle case where no budget data exists
+  if (!selectedYear && budgetDocs.length === 0) {
+    return (
+      <main className="min-h-screen bg-slate-50">
+        <section className="bg-navy py-12 px-6 text-white">
+          <div className="mx-auto max-w-7xl">
+            <FadeIn>
+              <Link 
+                href="/initiatives/politics-and-governance/executive-eye/federal"
+                className="inline-flex items-center gap-2 text-teal hover:text-white mb-6 transition-colors"
+              >
+                <ArrowLeft className="h-4 w-4" />
+                <span>Back to Federal Government</span>
+              </Link>
+              <h1 className="font-serif text-4xl md:text-5xl font-bold mb-4">
+                Budget & Finance
+              </h1>
+              <p className="text-xl text-gray-200 max-w-2xl">
+                No budget data available at this time.
+              </p>
+            </FadeIn>
+          </div>
+        </section>
+      </main>
+    );
+  }
+
+  // Extract allocations, handling undefined case
+  const allocations = useMemo(() => {
+    return selectedBudget?.allocations || [];
+  }, [selectedBudget]);
+
   const functionalData = useMemo(() => {
-    return yearData
-      .filter(b => b.budgetType === 'Functional')
-      .map(b => ({ name: b.sector, value: b.allocation }));
-  }, [yearData]);
+    return allocations
+      .filter(a => a.budgetType === 'Functional')
+      .map(a => ({ name: a.sector, value: a.allocation, percentage: a.percentage }));
+  }, [allocations]);
 
-  // Process data for Economic Budget Pie Chart
   const economicData = useMemo(() => {
-    return yearData
-      .filter(b => b.budgetType === 'Economic')
-      .map(b => ({ name: b.sector, value: b.allocation }));
-  }, [yearData]);
+    return allocations
+      .filter(a => a.budgetType === 'Economic')
+      .map(a => ({ name: a.sector, value: a.allocation, percentage: a.percentage }));
+  }, [allocations]);
 
-  const totalBudget = useMemo(() => {
-    // Summing unique allocations might be tricky if data overlaps, 
-    // but assuming Functional and Economic are two views of the same total, 
-    // we can sum one type to get the total.
-    const functionalSum = functionalData.reduce((acc, curr) => acc + curr.value, 0);
-    return functionalSum > 0 ? functionalSum : economicData.reduce((acc, curr) => acc + curr.value, 0);
-  }, [functionalData, economicData]);
+  const displayTotal = selectedBudget?.totalAmount || 0;
 
   const topAllocation = useMemo(() => {
-    const sorted = [...yearData].sort((a, b) => b.allocation - a.allocation);
+    if (allocations.length === 0) return null;
+    const sorted = [...allocations].sort((a, b) => b.allocation - a.allocation);
     return sorted[0];
-  }, [yearData]);
+  }, [allocations]);
 
   const CustomTooltip = ({ active, payload }: any) => {
     if (active && payload && payload.length) {
+      const data = payload[0].payload;
       return (
         <div className="bg-white p-3 border border-gray-200 shadow-lg rounded-lg">
-          <p className="font-bold text-navy text-sm">{payload[0].name}</p>
+          <p className="font-bold text-navy text-sm">{data.name}</p>
           <p className="text-teal text-sm">
-            ₦{payload[0].value.toFixed(2)} Trillion
+            ₦{data.value.toFixed(2)} Trillion
           </p>
+          {data.percentage && (
+             <p className="text-xs text-gray-500 mt-1">
+               {data.percentage}% of Total Budget
+             </p>
+          )}
         </div>
       );
     }
@@ -113,8 +134,15 @@ export const FederalBudgetDashboard = ({ budgetData }: FederalBudgetDashboardPro
                   Budget & Finance
                 </h1>
                 <p className="text-xl text-gray-200 max-w-2xl">
-                  Breakdown of the Federal Government's approved budget appropriations.
+                  {selectedBudget?.title 
+                    ? `${selectedBudget.title} (${selectedYear})`
+                    : `Breakdown of the Federal Government's ${selectedYear} Budget.`}
                 </p>
+                {selectedBudget?.status && (
+                  <span className="inline-block mt-3 px-3 py-1 bg-gold text-navy text-xs font-bold uppercase rounded-full">
+                    Status: {selectedBudget.status}
+                  </span>
+                )}
               </div>
 
               {/* Year Selector */}
@@ -148,7 +176,7 @@ export const FederalBudgetDashboard = ({ budgetData }: FederalBudgetDashboardPro
                 </div>
                 <div>
                   <p className="text-sm text-gray-500 font-medium">Total Budget</p>
-                  <h3 className="text-2xl font-bold text-navy">₦{totalBudget.toFixed(2)} Trillion</h3>
+                  <h3 className="text-2xl font-bold text-navy">₦{displayTotal.toFixed(2)} Trillion</h3>
                 </div>
               </div>
             </div>
@@ -272,8 +300,8 @@ export const FederalBudgetDashboard = ({ budgetData }: FederalBudgetDashboardPro
                 </tr>
               </thead>
               <tbody className="divide-y divide-gray-100 text-sm">
-                {yearData.map((item) => (
-                  <tr key={item._id} className="hover:bg-gray-50 transition-colors">
+                {allocations.map((item, idx) => (
+                  <tr key={idx} className="hover:bg-gray-50 transition-colors">
                     <td className="px-6 py-4 font-medium text-navy">{item.sector}</td>
                     <td className="px-6 py-4">
                       <span className={`inline-flex px-2 py-1 rounded-full text-xs font-semibold ${

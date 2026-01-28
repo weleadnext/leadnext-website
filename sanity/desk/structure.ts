@@ -169,10 +169,10 @@ export const structure = (S: StructureBuilder) =>
                 .title('Federal MDAs')
                 .icon(Library)
                 .child(S.documentTypeList('federalMda').title('Federal MDAs')),
-              S.listItem()
-                .title('Federal Budget')
-                .icon(PieChart)
-                .child(S.documentTypeList('federalBudget').title('Federal Budget')),
+                  S.listItem()
+                    .title('Federal Budget')
+                    .icon(PieChart)
+                    .child(S.documentTypeList('federalBudget').title('Federal Budget')),
             ])
         ),
 

@@ -123,12 +123,17 @@ export const LGA_DETAIL_QUERY = defineQuery(`*[_type == "lga" && slug.current ==
   state->{name, slug, logo}
 }`)
 
-export const FEDERAL_BUDGET_QUERY = defineQuery(`*[_type == "federalBudget"] | order(allocation desc) {
+export const FEDERAL_BUDGET_QUERY = defineQuery(`*[_type == "federalBudget"] | order(year desc) {
   _id,
   year,
-  budgetType,
-  sector,
-  allocation,
-  percentage,
-  notes
+  title,
+  totalAmount,
+  status,
+  allocations[] {
+    sector,
+    budgetType,
+    allocation,
+    percentage,
+    notes
+  }
 }`)
