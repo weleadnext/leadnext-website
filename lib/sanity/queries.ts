@@ -15,7 +15,7 @@ export const CABINET_MEMBERS_QUERY = defineQuery(`*[_type == "cabinetMember"] | 
   name,
   portfolio,
   wikiUrl,
-  stateOfOrigin,
+  "stateOfOrigin": stateOfOrigin->name,
   image
 }`)
 
