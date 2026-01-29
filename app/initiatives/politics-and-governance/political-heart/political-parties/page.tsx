@@ -70,24 +70,6 @@ export default async function PoliticalPartiesPage() {
                     )}
                   </div>
                   
-                  {/* Info Icon & Tooltip */}
-                  {party.description && (
-                    <div className="absolute top-3 right-3 z-30 group/tooltip">
-                      <div className="h-6 w-6 bg-white/80 backdrop-blur rounded-full flex items-center justify-center shadow-sm cursor-help hover:bg-white text-navy transition-colors">
-                        <Info className="h-4 w-4" />
-                      </div>
-                      
-                      {/* Tooltip Bubble */}
-                      <div className="absolute bottom-full right-0 mb-2 w-64 bg-navy text-white text-xs p-3 rounded-lg shadow-xl opacity-0 invisible group-hover/tooltip:opacity-100 group-hover/tooltip:visible transition-all duration-200 pointer-events-none z-40">
-                        <div className="relative z-10 font-medium leading-relaxed">
-                          {party.description}
-                        </div>
-                        {/* Arrow */}
-                        <div className="absolute -bottom-1 right-2 w-2 h-2 bg-navy rotate-45"></div>
-                      </div>
-                    </div>
-                  )}
-                  
                   <div className="p-5 flex-1 flex flex-col items-center text-center relative z-20 bg-white rounded-b-xl">
                     <span className="inline-block px-3 py-1 bg-navy/5 text-navy text-xs font-bold rounded-full mb-3">
                       {party.acronym}
@@ -95,6 +77,22 @@ export default async function PoliticalPartiesPage() {
                     <h3 className="font-serif text-lg font-bold text-navy mb-2 line-clamp-2">
                       {party.name}
                     </h3>
+                    {party.description && (
+                      <div className="relative group/text mt-2">
+                        <p className="text-sm text-gray-600 line-clamp-4 cursor-default">
+                          {party.description}
+                        </p>
+                        
+                        {/* Hover Tooltip for full text */}
+                        <div className="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 w-64 bg-navy text-white text-xs p-3 rounded-lg shadow-xl opacity-0 invisible group-hover/text:opacity-100 group-hover/text:visible transition-all duration-200 pointer-events-none z-50">
+                          <div className="relative z-10 font-medium leading-relaxed">
+                            {party.description}
+                          </div>
+                          {/* Arrow */}
+                          <div className="absolute -bottom-1 left-1/2 -translate-x-1/2 w-2 h-2 bg-navy rotate-45"></div>
+                        </div>
+                      </div>
+                    )}
                   </div>
                 </div>
               ))}

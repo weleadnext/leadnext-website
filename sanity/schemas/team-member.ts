@@ -40,6 +40,12 @@ export default defineType({
       description: 'Short description of their role and impact.',
     }),
     defineField({
+      name: 'profileLink',
+      title: 'Profile Link',
+      type: 'url',
+      description: 'LinkedIn or Wikipedia profile URL',
+    }),
+    defineField({
       name: 'order',
       title: 'Display Order',
       type: 'number',

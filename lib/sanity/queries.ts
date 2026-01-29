@@ -6,7 +6,8 @@ export const TEAM_MEMBERS_QUERY = defineQuery(`*[_type == "teamMember"] | order(
   role,
   credentials,
   image,
-  bio
+  bio,
+  profileLink
 }`)
 
 export const CABINET_MEMBERS_QUERY = defineQuery(`*[_type == "cabinetMember"] | order(order asc, name asc) {

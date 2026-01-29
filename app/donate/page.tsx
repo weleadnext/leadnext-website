@@ -98,9 +98,9 @@ export default function DonatePage() {
                   Why Your Support Matters
                 </p>
                 <p className="text-gray-700 text-sm leading-relaxed mb-4">
-                  Every contribution moves us closer to our mission of training
-                  <span className="font-semibold text-navy"> 10,000 youth leaders by 2025</span>.
-                  Your giving helps fund fellowships, short courses, civic tools, and
+                  Every contribution moves us closer to our mission of impacting
+                  <span className="font-semibold text-navy"> 10,000 youths by 2030</span>.
+                  Your donation helps fund fellowships, short courses, civic tools, and
                   the data platforms that keep citizens informed.
                 </p>
                 <ul className="space-y-2 text-sm text-gray-700">
@@ -114,7 +114,7 @@ export default function DonatePage() {
                 <p className="font-semibold text-navy mb-2">Need a receipt or have questions?</p>
                 <p className="mb-3">
                   If you would like an acknowledgement letter, partnership documentation,
-                  or have questions about giving, please reach out to us.
+                  or have questions about donating, please reach out to us.
                 </p>
                 <p>
                   Email:{' '}

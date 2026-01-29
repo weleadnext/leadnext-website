@@ -4,6 +4,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { FadeIn } from './animations/FadeIn';
 import { Mail, MapPin, Phone, Facebook, Twitter, Instagram, Linkedin, Send } from 'lucide-react';
+import { XIcon } from './icons/XIcon';
 
 export const Footer = () => {
   return (
@@ -47,11 +48,22 @@ export const Footer = () => {
             Empowering the next generation of Nigerian leaders through civic education, innovation, and transparent governance tracking.
           </p>
           <div className="flex gap-4">
-            {[Facebook, Twitter, Instagram, Linkedin].map((Icon, idx) => (
-              <a key={idx} href="#" className="flex h-10 w-10 items-center justify-center rounded-full bg-white/5 text-gray-400 transition-colors hover:bg-gold hover:text-navy">
-                <Icon className="h-5 w-5" />
-              </a>
-            ))}
+            {/*
+            <a href="#" className="flex h-10 w-10 items-center justify-center rounded-full bg-white/5 text-gray-400 transition-colors hover:bg-gold hover:text-navy">
+              <Facebook className="h-5 w-5" />
+            </a>
+            */}
+            <a href="https://x.com/leadnextng" target="_blank" rel="noopener noreferrer" className="flex h-10 w-10 items-center justify-center rounded-full bg-white/5 text-gray-400 transition-colors hover:bg-gold hover:text-navy">
+              <XIcon className="h-5 w-5" />
+            </a>
+            {/*
+            <a href="#" className="flex h-10 w-10 items-center justify-center rounded-full bg-white/5 text-gray-400 transition-colors hover:bg-gold hover:text-navy">
+              <Instagram className="h-5 w-5" />
+            </a>
+            <a href="#" className="flex h-10 w-10 items-center justify-center rounded-full bg-white/5 text-gray-400 transition-colors hover:bg-gold hover:text-navy">
+              <Linkedin className="h-5 w-5" />
+            </a>
+            */}
           </div>
         </FadeIn>
 

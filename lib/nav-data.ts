@@ -151,17 +151,17 @@ export const NAVIGATION_DATA: NavItem[] = [
       {
         label: "Work with Us",
         children: [
-          { label: "Volunteer", href: "/work-in-progress" },
-          { label: "Become a Mentor", href: "/work-in-progress" },
-          { label: "Become a Partner", href: "/work-in-progress" },
-          { label: "Careers & Internships", href: "/work-in-progress" },
+          { label: "Volunteer", href: "/get-involved/work-with-us?type=volunteer" },
+          { label: "Become a Mentor", href: "/get-involved/work-with-us?type=mentor" },
+          { label: "Become a Partner", href: "/get-involved/work-with-us?type=partner" },
+          { label: "Careers & Internships", href: "/get-involved/work-with-us?type=career" },
         ],
       },
       {
         label: "Contact",
         children: [
           { label: "Email Us", href: "mailto:weleadnext@gmail.com" },
-          { label: "Contact Form", href: "/work-in-progress" },
+          // { label: "Contact Form", href: "/work-in-progress" },
         ],
       },
     ],

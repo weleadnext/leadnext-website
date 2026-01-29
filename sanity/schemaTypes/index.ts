@@ -17,6 +17,7 @@ import senateCabinetMember from '../schemas/senate-cabinet-member'
 import houseCabinetMember from '../schemas/house-cabinet-member'
 import stateAssemblyCabinetMember from '../schemas/state-assembly-cabinet-member'
 import federalBudget from '../schemas/federal-budget'
+import workWithUs from '../schemas/work-with-us'
 
 export const schema: { types: SchemaTypeDefinition[] } = {
   types: [
@@ -38,5 +39,6 @@ export const schema: { types: SchemaTypeDefinition[] } = {
     houseCabinetMember,
     stateAssemblyCabinetMember,
     federalBudget,
+    workWithUs,
   ],
 }

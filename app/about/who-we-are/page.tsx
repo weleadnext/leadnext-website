@@ -2,7 +2,7 @@ import { FadeIn } from '@/components/animations/FadeIn';
 import { client } from '@/sanity/lib/client';
 import { TEAM_MEMBERS_QUERY } from '@/lib/sanity/queries';
 import { urlFor } from '@/sanity/lib/image';
-import { Users, Award, Briefcase } from 'lucide-react';
+import { Users, Award, Briefcase, ExternalLink, Linkedin } from 'lucide-react';
 import Image from 'next/image';
 
 export const revalidate = 60;
@@ -14,6 +14,7 @@ interface TeamMember {
   credentials?: string;
   image: any;
   bio?: string;
+  profileLink?: string;
 }
 
 export default async function WhoWeArePage() {
@@ -59,9 +60,9 @@ export default async function WhoWeArePage() {
           ) : (
             <div className="grid grid-cols-1 md:grid-cols-2 gap-12 max-w-5xl mx-auto">
               {teamMembers.map((member, idx) => (
-                <FadeIn key={member._id} delay={idx * 0.2} className="bg-white border border-gray-200 overflow-hidden hover:shadow-xl transition-all duration-300">
+                <FadeIn key={member._id} delay={idx * 0.2} className="bg-white border border-gray-200 overflow-hidden hover:shadow-xl transition-all duration-300 flex flex-col h-full">
                   {/* Image Section */}
-                  <div className="relative h-80 bg-gradient-to-br from-navy to-teal">
+                  <div className="relative h-80 bg-gradient-to-br from-navy to-teal shrink-0">
                     {member.image ? (
                       <Image
                         src={urlFor(member.image).url()}
@@ -88,19 +89,35 @@ export default async function WhoWeArePage() {
                   </div>
 
                   {/* Content Section */}
-                  <div className="p-8">
+                  <div className="p-8 flex flex-col flex-1">
                     <div className="flex items-center gap-2 mb-3">
                       <Briefcase className="h-5 w-5 text-teal" />
                       <span className="text-sm font-semibold text-teal uppercase tracking-wider">{member.role}</span>
                     </div>
                     <h3 className="font-serif text-2xl font-bold text-navy mb-4">{member.name}</h3>
-                    <div className="pt-4 border-t border-gray-100">
+                    <div className="pt-4 border-t border-gray-100 mb-6 flex-1">
                       <p className="text-gray-600 leading-relaxed">
                         {member.bio || (member.role === "Executive Director/Founder" 
                           ? "Leading LeadNext's strategic vision and operations, driving our mission to cultivate transformative leadership across Nigeria."
                           : "Providing strategic oversight and governance expertise to guide LeadNext's mission and impact.")}
                       </p>
                     </div>
+
+                    {member.profileLink && (
+                      <a 
+                        href={member.profileLink}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center gap-2 text-sm font-bold text-navy hover:text-teal transition-colors mt-auto"
+                      >
+                        <span>View Full Profile</span>
+                        {member.profileLink.includes('linkedin') ? (
+                          <Linkedin className="h-4 w-4" />
+                        ) : (
+                          <ExternalLink className="h-4 w-4" />
+                        )}
+                      </a>
+                    )}
                   </div>
                 </FadeIn>
               ))}

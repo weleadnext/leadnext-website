@@ -226,14 +226,32 @@ export const structure = (S: StructureBuilder) =>
 
       S.divider(),
 
-      // Mailing List Subscriptions
-      S.listItem()
-        .title('Mailing List')
-        .icon(Mail)
-        .child(
-          S.documentList()
-            .title('Mailing List Subscriptions')
-            .filter('_type == "mailingListSubscription"')
-            .defaultOrdering([{ field: 'subscribedAt', direction: 'desc' }])
-        ),
+          // Mailing List Subscriptions
+          S.listItem()
+            .title('Requests & Subscriptions')
+            .icon(Mail)
+            .child(
+              S.list()
+                .title('Requests & Subscriptions')
+                .items([
+                  S.listItem()
+                    .title('Mailing List')
+                    .icon(Mail)
+                    .child(
+                      S.documentList()
+                        .title('Mailing List Subscriptions')
+                        .filter('_type == "mailingListSubscription"')
+                        .defaultOrdering([{ field: 'subscribedAt', direction: 'desc' }])
+                    ),
+                  S.listItem()
+                    .title('Work With Us Requests')
+                    .icon(Inbox)
+                    .child(
+                      S.documentList()
+                        .title('Work With Us Requests')
+                        .filter('_type == "workWithUs"')
+                        .defaultOrdering([{ field: 'submittedAt', direction: 'desc' }])
+                    ),
+                ])
+            ),
     ])

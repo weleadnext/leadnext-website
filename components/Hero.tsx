@@ -1,6 +1,7 @@
 'use client';
 
 import { FadeIn } from './animations/FadeIn';
+import { XIcon } from './icons/XIcon';
 
 export const Hero = () => {
   return (
@@ -29,12 +30,13 @@ export const Hero = () => {
             </p>
           </FadeIn>
 
-          <FadeIn delay={0.4} className="mt-8 flex gap-4">
-            <a href="#join" className="inline-flex items-center justify-center bg-gold px-8 py-3.5 font-semibold text-navy transition-transform hover:scale-105 hover:bg-white">
-              Join the Movement
+          <FadeIn delay={0.4} className="mt-8 flex flex-col sm:flex-row gap-4">
+          <a href="/initiatives/future-leaders-fellowship" className="inline-flex items-center justify-center bg-teal px-8 py-3.5 font-semibold text-white transition-colors hover:bg-white hover:text-navy">
+            Apply for Future Leaders Fellowship
             </a>
-            <a href="#apply" className="inline-flex items-center justify-center bg-teal px-8 py-3.5 font-semibold text-white transition-colors hover:bg-white hover:text-navy">
-              Apply Now
+            <a href="https://x.com/leadnextng" target='_blank' className="inline-flex items-center justify-center gap-2 bg-gold px-8 py-3.5 font-semibold text-navy transition-transform hover:scale-105 hover:bg-white">
+            Follow Us on 
+              <XIcon className="h-5 w-5" />
             </a>
           </FadeIn>
         </div>
