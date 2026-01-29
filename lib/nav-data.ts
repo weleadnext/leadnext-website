@@ -130,7 +130,7 @@ export const NAVIGATION_DATA: NavItem[] = [
       {
         label: "LeadNext Network",
         children: [
-          { label: "Partners", href: "/work-in-progress" },
+          { label: "Partners", href: "/impact/leadnext-network/partners" },
           { label: "Cohorts", href: "/work-in-progress" },
         ],
       },
