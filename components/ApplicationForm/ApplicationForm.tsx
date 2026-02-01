@@ -62,7 +62,7 @@ export const ApplicationForm = ({ programId, programTitle, onSuccess }: Applicat
       setSuccess(true);
       setTimeout(() => {
         onSuccess();
-      }, 2000);
+      }, 10000);
     } catch (err: any) {
       console.error('Application submission error:', err);
       setError(err.message || 'Failed to submit application. Please try again.');

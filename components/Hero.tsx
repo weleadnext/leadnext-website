@@ -31,11 +31,11 @@ export const Hero = () => {
           </FadeIn>
 
           <FadeIn delay={0.4} className="mt-8 flex flex-col sm:flex-row gap-4">
-          <a href="/initiatives/future-leaders-fellowship" className="inline-flex items-center justify-center bg-teal px-8 py-3.5 font-semibold text-white transition-colors hover:bg-white hover:text-navy">
-            Apply for Future Leaders Fellowship
+          <a href="/about/our-story" className="inline-flex items-center justify-center bg-teal px-8 py-3.5 font-semibold text-white transition-colors hover:bg-white hover:text-navy">
+            Our Story
             </a>
             <a href="https://x.com/leadnextng" target='_blank' className="inline-flex items-center justify-center gap-2 bg-gold px-8 py-3.5 font-semibold text-navy transition-transform hover:scale-105 hover:bg-white">
-            Follow Us on 
+            Follow Us 
               <XIcon className="h-5 w-5" />
             </a>
           </FadeIn>

@@ -126,14 +126,6 @@ export const MobileNav = ({ isOpen, onClose }: MobileNavProps) => {
               ))}
             </div>
 
-            <div className="mt-8 border-t border-gray-100 pt-8">
-              <Link
-                href="/studio"
-                className="flex w-full items-center justify-center rounded-none bg-navy py-4 font-serif font-medium text-white hover:bg-teal"
-              >
-                Admin Login
-              </Link>
-            </div>
           </motion.div>
         </>
       )}

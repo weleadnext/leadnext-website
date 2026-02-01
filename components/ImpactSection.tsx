@@ -13,9 +13,9 @@ const GROWTH_DATA = [
 ];
 
 const IMPACT_METRICS = [
-  { value: "2,500+", label: "Youth Leaders Trained", icon: Users, color: "text-teal", bg: "bg-teal/10" },
+  { value: "10,000+", label: "Youths Trained by 2030", icon: Users, color: "text-teal", bg: "bg-teal/10" },
   { value: "36", label: "States Covered", icon: MapPin, color: "text-gold", bg: "bg-gold/10" },
-  { value: "120", label: "Civic Startups", icon: Building2, color: "text-navy", bg: "bg-navy/10" },
+  { value: "120", label: "Communities Impacted", icon: Building2, color: "text-navy", bg: "bg-navy/10" },
   { value: "40%", label: "Female Participation", icon: TrendingUp, color: "text-purple-600", bg: "bg-purple-100" },
 ];
 

@@ -14,7 +14,7 @@ const ACTIONS = [
   },
   {
     title: "Donate",
-    description: "Support our mission to train 10,000 youth leaders by 2025. Every contribution counts.",
+    description: "Support our mission to train 10,000 youth leaders by 2030. Every contribution counts.",
     icon: Heart,
     color: "bg-gold",
     cta: "Make a Donation",

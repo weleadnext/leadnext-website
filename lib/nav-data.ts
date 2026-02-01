@@ -159,10 +159,7 @@ export const NAVIGATION_DATA: NavItem[] = [
       },
       {
         label: "Contact",
-        children: [
-          { label: "Email Us", href: "mailto:weleadnext@gmail.com" },
-          // { label: "Contact Form", href: "/work-in-progress" },
-        ],
+        href: "mailto:weleadnext@gmail.com"
       },
     ],
   },

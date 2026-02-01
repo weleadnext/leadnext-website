@@ -119,10 +119,10 @@ export default function OurStoryPage() {
                 Be part of the generation that transforms Nigeria through intentional leadership and civic engagement. Whether you're a student, professional, or partner, there's a place for you here.
               </p>
               <div className="flex flex-col sm:flex-row gap-4">
-                <a href="/initiatives" className="bg-gold text-navy font-bold py-3 px-8 rounded hover:bg-white transition-colors text-center">
-                  Explore Programs
+                <a href="/initiatives/future-leaders-fellowship" className="bg-gold text-navy font-bold py-3 px-8 rounded hover:bg-white transition-colors text-center">
+                  Future Leaders Fellowship
                 </a>
-                <a href="/about/get-involved" className="bg-teal text-white font-bold py-3 px-8 rounded hover:bg-white hover:text-navy transition-colors text-center">
+                <a href="/get-involved/work-with-us?type=volunteer" className="bg-teal text-white font-bold py-3 px-8 rounded hover:bg-white hover:text-navy transition-colors text-center">
                   Get Involved
                 </a>
               </div>
