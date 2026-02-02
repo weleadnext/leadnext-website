@@ -32,12 +32,14 @@ export async function POST(request: NextRequest) {
     const coverLetter = formData.get('coverLetter') as string;
     const resumeFile = formData.get('resume') as File | null;
 
-    if (!programId || !firstName || !lastName || !email || !phone || !coverLetter || !resumeFile) {
+    if (!programId || !firstName || !lastName || !email || !coverLetter || !resumeFile) {
       return NextResponse.json(
         { error: 'All fields are required' },
         { status: 400 }
       );
     }
+
+    const phoneValue = phone?.trim() || '';
 
     // Upload resume file to Sanity
     let resumeAssetId = null;
@@ -62,7 +64,7 @@ export async function POST(request: NextRequest) {
       firstName,
       lastName,
       email,
-      phone,
+      phone: phoneValue,
       coverLetter,
       resume: resumeAssetId ? {
         _type: 'file',

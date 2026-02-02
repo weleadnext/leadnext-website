@@ -34,6 +34,7 @@ export const application = defineType({
       name: 'phone',
       title: 'Phone Number',
       type: 'string',
+      description: 'Required. Any format accepted.',
       validation: (Rule) => Rule.required(),
     }),
     defineField({
