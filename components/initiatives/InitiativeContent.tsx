@@ -16,6 +16,9 @@ interface InitiativeContentProps {
   eligibilityCriteria?: string[];
   applyText?: any[];
   onApplyClick?: () => void;
+  canApply?: boolean;
+  applicationMessage?: string;
+  isLoading?: boolean;
 }
 
 export const InitiativeContent = ({ 
@@ -24,7 +27,10 @@ export const InitiativeContent = ({
   programStructure, 
   eligibilityCriteria,
   applyText,
-  onApplyClick
+  onApplyClick,
+  canApply = true,
+  applicationMessage,
+  isLoading = false
 }: InitiativeContentProps) => {
   return (
     <div className="space-y-16">
@@ -121,12 +127,25 @@ export const InitiativeContent = ({
             <div className="text-gray-200 leading-relaxed text-lg mb-8 prose prose-lg max-w-none prose-invert">
               <PortableText value={applyText} />
             </div>
-            <button 
-              onClick={onApplyClick}
-              className="inline-flex items-center gap-2 bg-gold text-navy font-bold py-4 px-8 rounded hover:bg-white transition-colors"
-            >
-              Apply Now <ArrowRight className="h-5 w-5" />
-            </button>
+            <div className="space-y-4">
+              <button 
+                onClick={onApplyClick}
+                disabled={!canApply || isLoading}
+                className={`inline-flex items-center gap-2 font-bold py-4 px-8 rounded transition-colors ${
+                  canApply && !isLoading
+                    ? 'bg-gold text-navy hover:bg-white cursor-pointer'
+                    : 'bg-gray-500 text-gray-300 cursor-not-allowed'
+                }`}
+              >
+                {isLoading ? 'Loading...' : canApply ? 'Apply Now' : 'Applications Closed'} 
+                {canApply && !isLoading && <ArrowRight className="h-5 w-5" />}
+              </button>
+              {applicationMessage && !isLoading && (
+                <p className={`text-sm ${canApply ? 'text-gray-300' : 'text-yellow-300'}`}>
+                  {applicationMessage}
+                </p>
+              )}
+            </div>
           </div>
         </FadeIn>
       )}

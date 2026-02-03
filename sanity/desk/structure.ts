@@ -1,5 +1,5 @@
 import { StructureBuilder } from 'sanity/structure'
-import { FileText, MapPin, Building2, User, GraduationCap, Inbox, CheckCircle2, Clock, XCircle, Eye, Mail, Briefcase, ShieldAlert, Library, Flag, Landmark, Gavel, PieChart } from 'lucide-react'
+import { FileText, MapPin, Building2, User, GraduationCap, Inbox, CheckCircle2, Clock, XCircle, Eye, Mail, Briefcase, ShieldAlert, Library, Flag, Landmark, Gavel, PieChart, Users } from 'lucide-react'
 
 export const structure = (S: StructureBuilder) =>
   S.list()
@@ -36,9 +36,15 @@ export const structure = (S: StructureBuilder) =>
                 .icon(GraduationCap)
                 .child(S.documentTypeList('program').title('All Programs')),
               
+              // Cohorts List
+              S.listItem()
+                .title('All Cohorts')
+                .icon(Users)
+                .child(S.documentTypeList('cohort').title('All Cohorts')),
+              
               S.divider(),
               
-              // Applications grouped by Program
+              // Applications grouped by Program → Cohort
               S.listItem()
                 .title('Applications by Program')
                 .icon(Inbox)
@@ -47,13 +53,13 @@ export const structure = (S: StructureBuilder) =>
                   S.documentTypeList('program')
                     .title('Select a Program to View Applications')
                     .child(programId =>
-                      // For each program, show its applications grouped by status
+                      // For each program, show its applications grouped by cohort
                       S.list()
-                        .title('Applications')
+                        .title('Applications by Cohort')
                         .items([
-                          // All Applications
+                          // All Applications for this Program
                           S.listItem()
-                            .title('All Applications')
+                            .title('All Applications (All Cohorts)')
                             .icon(Inbox)
                             .child(
                               S.documentList()
@@ -65,53 +71,88 @@ export const structure = (S: StructureBuilder) =>
                           
                           S.divider(),
                           
-                          // Pending Applications
-                          S.listItem()
-                            .title('Pending')
-                            .icon(Clock)
-                            .child(
-                              S.documentList()
-                                .title('Pending Applications')
-                                .filter('_type == "application" && program._ref == $programId && status == "pending"')
-                                .params({ programId })
-                                .defaultOrdering([{ field: 'submittedAt', direction: 'desc' }])
-                            ),
-                          
-                          // Under Review Applications
-                          S.listItem()
-                            .title('Under Review')
-                            .icon(Eye)
-                            .child(
-                              S.documentList()
-                                .title('Under Review')
-                                .filter('_type == "application" && program._ref == $programId && status == "under_review"')
-                                .params({ programId })
-                                .defaultOrdering([{ field: 'submittedAt', direction: 'desc' }])
-                            ),
-                          
-                          // Accepted Applications
-                          S.listItem()
-                            .title('Accepted')
-                            .icon(CheckCircle2)
-                            .child(
-                              S.documentList()
-                                .title('Accepted Applications')
-                                .filter('_type == "application" && program._ref == $programId && status == "accepted"')
-                                .params({ programId })
-                                .defaultOrdering([{ field: 'submittedAt', direction: 'desc' }])
-                            ),
-                          
-                          // Rejected Applications
-                          S.listItem()
-                            .title('Rejected')
-                            .icon(XCircle)
-                            .child(
-                              S.documentList()
-                                .title('Rejected Applications')
-                                .filter('_type == "application" && program._ref == $programId && status == "rejected"')
-                                .params({ programId })
-                                .defaultOrdering([{ field: 'submittedAt', direction: 'desc' }])
-                            ),
+                          // Applications by Cohort
+                          // Create a dynamic list based on cohorts that have applications for this program
+                          ...(() => {
+                            // This is a workaround - we'll show a general cohort-based structure
+                            return [
+                              S.listItem()
+                                .title('By Cohort')
+                                .icon(Users)
+                                .child(
+                                  // List all cohorts
+                                  S.documentTypeList('cohort')
+                                    .title('Select Cohort to View Applications')
+                                    .child(cohortId =>
+                                      S.list()
+                                        .title('Applications by Status')
+                                        .items([
+                                          // All Applications for Program + Cohort
+                                          S.listItem()
+                                            .title('All Applications')
+                                            .icon(Inbox)
+                                            .child(
+                                              S.documentList()
+                                                .title('All Applications')
+                                                .filter('_type == "application" && program._ref == $programId && cohort._ref == $cohortId')
+                                                .params({ programId, cohortId })
+                                                .defaultOrdering([{ field: 'submittedAt', direction: 'desc' }])
+                                            ),
+                                          
+                                          S.divider(),
+                                          
+                                          // Pending Applications
+                                          S.listItem()
+                                            .title('Pending')
+                                            .icon(Clock)
+                                            .child(
+                                              S.documentList()
+                                                .title('Pending Applications')
+                                                .filter('_type == "application" && program._ref == $programId && cohort._ref == $cohortId && status == "pending"')
+                                                .params({ programId, cohortId })
+                                                .defaultOrdering([{ field: 'submittedAt', direction: 'desc' }])
+                                            ),
+                                          
+                                          // Under Review Applications
+                                          S.listItem()
+                                            .title('Under Review')
+                                            .icon(Eye)
+                                            .child(
+                                              S.documentList()
+                                                .title('Under Review')
+                                                .filter('_type == "application" && program._ref == $programId && cohort._ref == $cohortId && status == "under_review"')
+                                                .params({ programId, cohortId })
+                                                .defaultOrdering([{ field: 'submittedAt', direction: 'desc' }])
+                                            ),
+                                          
+                                          // Accepted Applications
+                                          S.listItem()
+                                            .title('Accepted')
+                                            .icon(CheckCircle2)
+                                            .child(
+                                              S.documentList()
+                                                .title('Accepted Applications')
+                                                .filter('_type == "application" && program._ref == $programId && cohort._ref == $cohortId && status == "accepted"')
+                                                .params({ programId, cohortId })
+                                                .defaultOrdering([{ field: 'submittedAt', direction: 'desc' }])
+                                            ),
+                                          
+                                          // Rejected Applications
+                                          S.listItem()
+                                            .title('Rejected')
+                                            .icon(XCircle)
+                                            .child(
+                                              S.documentList()
+                                                .title('Rejected Applications')
+                                                .filter('_type == "application" && program._ref == $programId && cohort._ref == $cohortId && status == "rejected"')
+                                                .params({ programId, cohortId })
+                                                .defaultOrdering([{ field: 'submittedAt', direction: 'desc' }])
+                                            ),
+                                        ])
+                                    )
+                                )
+                            ]
+                          })()
                         ])
                     )
                 ),

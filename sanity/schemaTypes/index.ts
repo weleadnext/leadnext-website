@@ -6,6 +6,7 @@ import { official } from './official'
 import { project } from './project'
 import { program } from './program'
 import { application } from './application'
+import { cohort } from './cohort'
 import { mailingListSubscription } from './mailingListSubscription'
 import cabinetMember from '../schemas/cabinet-member'
 import securityHead from '../schemas/security-head'
@@ -28,6 +29,7 @@ export const schema: { types: SchemaTypeDefinition[] } = {
     project, 
     program, 
     application, 
+    cohort,
     mailingListSubscription, 
     cabinetMember, 
     securityHead, 

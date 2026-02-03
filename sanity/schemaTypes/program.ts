@@ -77,12 +77,52 @@ export const program = defineType({
       of: [{type: 'block'}],
       description: 'Text for the application section'
     }),
+    defineField({
+      name: 'applicationsOpen',
+      title: 'Applications Open',
+      type: 'boolean',
+      description: 'Enable or disable applications for this program',
+      initialValue: false,
+    }),
+    defineField({
+      name: 'order',
+      title: 'Display Order',
+      type: 'number',
+      description: 'Order in which this program appears (lower numbers first)',
+      initialValue: 0,
+    }),
   ],
   preview: {
     select: {
       title: 'title',
+      applicationsOpen: 'applicationsOpen',
       media: 'mainImage',
     },
+    prepare({ title, applicationsOpen, media }) {
+      return {
+        title,
+        subtitle: applicationsOpen ? '✅ Applications Open' : '❌ Applications Closed',
+        media,
+      }
+    },
   },
+  orderings: [
+    {
+      title: 'Display Order',
+      name: 'orderAsc',
+      by: [
+        {field: 'order', direction: 'asc'},
+        {field: 'title', direction: 'asc'}
+      ]
+    },
+    {
+      title: 'Application Status',
+      name: 'applicationsOpenDesc',
+      by: [
+        {field: 'applicationsOpen', direction: 'desc'},
+        {field: 'title', direction: 'asc'}
+      ]
+    }
+  ],
 })
 

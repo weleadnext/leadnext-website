@@ -4,6 +4,9 @@ import Link from 'next/link';
 
 interface InitiativeSidebarProps {
   onApplyClick?: () => void;
+  canApply?: boolean;
+  applicationMessage?: string;
+  isLoading?: boolean;
 }
 
 const PROGRAMS = [
@@ -13,7 +16,12 @@ const PROGRAMS = [
   "Women-in Leadership Fellowship"
 ];
 
-export const InitiativeSidebar = ({ onApplyClick }: InitiativeSidebarProps = {}) => {
+export const InitiativeSidebar = ({ 
+  onApplyClick, 
+  canApply = true, 
+  applicationMessage,
+  isLoading = false 
+}: InitiativeSidebarProps = {}) => {
   return (
     <div className="space-y-8 sticky top-24">
       {/* Navigation Card */}
@@ -33,15 +41,25 @@ export const InitiativeSidebar = ({ onApplyClick }: InitiativeSidebarProps = {})
       {/* Apply Card */}
       <div className="bg-teal rounded-lg p-8 text-white shadow-lg relative overflow-hidden">
         <div className="relative z-10">
-          <h3 className="font-serif text-2xl font-bold mb-4">Apply Today</h3>
+          <h3 className="font-serif text-2xl font-bold mb-4">
+            {canApply && !isLoading ? 'Apply Today' : 'Applications Status'}
+          </h3>
           <p className="text-white/90 mb-6 text-sm">
-            Take the first step towards becoming a leader in your community.
+            {canApply && !isLoading 
+              ? 'Take the first step towards becoming a leader in your community.'
+              : applicationMessage || 'Loading application status...'
+            }
           </p>
           <button 
             onClick={onApplyClick}
-            className="w-full bg-gold text-navy font-bold py-3 px-6 rounded hover:bg-white transition-colors"
+            disabled={!canApply || isLoading}
+            className={`w-full font-bold py-3 px-6 rounded transition-colors ${
+              canApply && !isLoading
+                ? 'bg-gold text-navy hover:bg-white cursor-pointer'
+                : 'bg-gray-500 text-gray-300 cursor-not-allowed'
+            }`}
           >
-            Apply Now
+            {isLoading ? 'Loading...' : canApply ? 'Apply Now' : 'Applications Closed'}
           </button>
         </div>
         {/* Decorative circle */}

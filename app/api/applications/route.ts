@@ -32,14 +32,46 @@ export async function POST(request: NextRequest) {
     const coverLetter = formData.get('coverLetter') as string;
     const resumeFile = formData.get('resume') as File | null;
 
-    if (!programId || !firstName || !lastName || !email || !coverLetter || !resumeFile) {
+    const phoneValue = phone?.toString().trim() ?? '';
+
+    if (!programId || !firstName || !lastName || !email || !phoneValue || !coverLetter || !resumeFile) {
       return NextResponse.json(
         { error: 'All fields are required' },
         { status: 400 }
       );
     }
 
-    const phoneValue = phone?.trim() || '';
+    // Check if program exists and applications are open
+    const program = await writeClient.fetch(
+      `*[_type == "program" && _id == $programId][0]{ _id, title, applicationsOpen }`,
+      { programId }
+    );
+
+    if (!program) {
+      return NextResponse.json(
+        { error: 'Program not found' },
+        { status: 404 }
+      );
+    }
+
+    if (!program.applicationsOpen) {
+      return NextResponse.json(
+        { error: 'Applications are currently closed for this program' },
+        { status: 400 }
+      );
+    }
+
+    // Get the active cohort
+    const activeCohort = await writeClient.fetch(
+      `*[_type == "cohort" && status == "active"][0]{ _id, name }`
+    );
+
+    if (!activeCohort) {
+      return NextResponse.json(
+        { error: 'No active cohort available. Please contact support.' },
+        { status: 400 }
+      );
+    }
 
     // Upload resume file to Sanity
     let resumeAssetId = null;
@@ -55,27 +87,41 @@ export async function POST(request: NextRequest) {
     }
 
     // Create application document
-    const application = await writeClient.create({
+    const applicationData = {
       _type: 'application',
       program: {
         _type: 'reference',
         _ref: programId,
       },
-      firstName,
-      lastName,
-      email,
+      cohort: {
+        _type: 'reference',
+        _ref: activeCohort._id,
+      },
+      firstName: firstName.trim(),
+      lastName: lastName.trim(),
+      email: email.trim().toLowerCase(),
       phone: phoneValue,
-      coverLetter,
-      resume: resumeAssetId ? {
-        _type: 'file',
-        asset: {
-          _type: 'reference',
-          _ref: resumeAssetId,
-        },
-      } : undefined,
+      coverLetter: coverLetter.trim(),
+      ...(resumeAssetId && {
+        resume: {
+          _type: 'file',
+          asset: {
+            _type: 'reference',
+            _ref: resumeAssetId,
+          },
+        }
+      }),
       status: 'pending',
       submittedAt: new Date().toISOString(),
-    });
+    };
+
+    console.log('Creating application with data:', JSON.stringify(applicationData, null, 2));
+
+    const application = await writeClient.create(applicationData);
+
+    if (!application || !application._id) {
+      throw new Error('Failed to create application - no document returned');
+    }
 
     return NextResponse.json({ success: true, id: application._id });
   } catch (error: any) {

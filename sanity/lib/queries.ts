@@ -11,12 +11,14 @@ export const PROJECTS_QUERY = groq`*[_type == "project"] | order(_createdAt desc
   "stateName": state->name
 }`
 
-export const PROGRAMS_QUERY = groq`*[_type == "program"] | order(_createdAt asc) {
+export const PROGRAMS_QUERY = groq`*[_type == "program"] | order(order asc, _createdAt asc) {
   _id,
   title,
   slug,
   description,
-  mainImage
+  mainImage,
+  applicationsOpen,
+  order
 }`
 
 export const PROGRAM_BY_SLUG_QUERY = groq`*[_type == "program" && slug.current == $slug][0] {
@@ -29,7 +31,29 @@ export const PROGRAM_BY_SLUG_QUERY = groq`*[_type == "program" && slug.current =
   whatItOffers,
   programStructure,
   eligibilityCriteria,
-  applyText
+  applyText,
+  applicationsOpen,
+  order
+}`
+
+export const COHORTS_QUERY = groq`*[_type == "cohort"] | order(status desc, startDate desc) {
+  _id,
+  name,
+  status,
+  startDate,
+  endDate,
+  programStartDate,
+  description
+}`
+
+export const ACTIVE_COHORT_QUERY = groq`*[_type == "cohort" && status == "active"][0] {
+  _id,
+  name,
+  status,
+  startDate,
+  endDate,
+  programStartDate,
+  description
 }`
 
 export const OFFICIALS_QUERY = groq`*[_type == "official"] | order(name asc) {

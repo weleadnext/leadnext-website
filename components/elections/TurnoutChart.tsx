@@ -41,7 +41,7 @@ export const TurnoutChart = () => {
           />
           <Tooltip 
             contentStyle={{ borderRadius: '8px', border: 'none', boxShadow: '0 4px 6px -1px rgb(0 0 0 / 0.1)' }}
-            formatter={(value: number) => [`${value}%`, 'Turnout']}
+            formatter={(value: number | undefined) => [`${value ?? 0}%`, 'Turnout']}
             labelStyle={{ color: '#1B3C59', fontWeight: 'bold' }}
           />
           <Legend />

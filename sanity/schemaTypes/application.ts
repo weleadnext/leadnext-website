@@ -13,6 +13,13 @@ export const application = defineType({
       validation: (Rule) => Rule.required(),
     }),
     defineField({
+      name: 'cohort',
+      title: 'Cohort',
+      type: 'reference',
+      to: { type: 'cohort' },
+      description: 'Automatically assigned to active cohort when application is submitted',
+    }),
+    defineField({
       name: 'firstName',
       title: 'First Name',
       type: 'string',
@@ -80,12 +87,13 @@ export const application = defineType({
       firstName: 'firstName',
       lastName: 'lastName',
       program: 'program.title',
+      cohort: 'cohort.name',
       status: 'status',
     },
-    prepare({ firstName, lastName, program, status }) {
+    prepare({ firstName, lastName, program, cohort, status }) {
       return {
         title: `${firstName} ${lastName}`,
-        subtitle: `${program || 'No Program'} - ${status || 'pending'}`,
+        subtitle: `${program || 'No Program'} - ${cohort || 'No Cohort'} - ${status || 'pending'}`,
       }
     },
   },
