@@ -101,7 +101,7 @@ export const program = defineType({
     prepare({ title, applicationsOpen, media }) {
       return {
         title,
-        subtitle: applicationsOpen ? '✅ Applications Open' : '❌ Applications Closed',
+        subtitle: applicationsOpen ? 'Applications Open' : 'Applications Closed',
         media,
       }
     },

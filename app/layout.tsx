@@ -18,6 +18,11 @@ const lato = Lato({
 export const metadata: Metadata = {
   title: "LeadNext - Official Project Tracker",
   description: "Tracking government projects across Nigeria",
+  icons: {
+    icon: "/favicon-32x32.png",
+    shortcut: "/favicon-32x32.png",
+    apple: "/favicon-32x32.png",
+  },
 };
 
 export default function RootLayout({
