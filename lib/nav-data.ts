@@ -21,13 +21,13 @@ export const NAVIGATION_DATA: NavItem[] = [
     children: [
       {
         label: "Short Courses & Trainings",
-        href: "/work-in-progress",
+        href: "/coming-soon#short-courses",
         children: [
-          { label: "Environmental Stewardship", href: "/work-in-progress" },
-          { label: "Skills & Entrepreneurship", href: "/work-in-progress" },
-          { label: "Civics & Governance", href: "/work-in-progress" },
-          { label: "Politics & Community", href: "/work-in-progress" },
-          { label: "Ethics & Social Responsibilities", href: "/work-in-progress" },
+          { label: "Environmental Stewardship", href: "/coming-soon#short-courses" },
+          { label: "Skills & Entrepreneurship", href: "/coming-soon#short-courses" },
+          { label: "Civics & Governance", href: "/coming-soon#short-courses" },
+          { label: "Politics & Community", href: "/coming-soon#short-courses" },
+          { label: "Ethics & Social Responsibilities", href: "/coming-soon#short-courses" },
         ],
       },
       {
@@ -41,7 +41,7 @@ export const NAVIGATION_DATA: NavItem[] = [
       {
         label: "Scholarships",
         href: "/work-in-progress",
-        children: [{ label: "Apply", href: "/work-in-progress" }],
+        children: [{ label: "Apply", href: "/coming-soon#scholarships" }],
       },
     ],
   },
@@ -96,26 +96,26 @@ export const NAVIGATION_DATA: NavItem[] = [
     label: "Civics Centre",
     href: "/work-in-progress",
     children: [
-      { label: "The Citizen", href: "/work-in-progress" },
-      { label: "The Nation", href: "/work-in-progress" },
-      { label: "Social Contract", href: "/work-in-progress" },
+      { label: "The Citizen", href: "/coming-soon#civics-center" },
+      { label: "The Nation", href: "/coming-soon#civics-center" },
+      { label: "Social Contract", href: "/coming-soon#civics-center" },
     ],
   },
   {
     label: "Citizen Library",
     href: "/work-in-progress",
     children: [
-      { label: "The Nigerian Story", href: "/work-in-progress" },
-      { label: "Publications", href: "/work-in-progress" },
-      { label: "Policy Briefs", href: "/work-in-progress" },
-      { label: "Civic Education", href: "/work-in-progress" },
-      { label: "Blog", href: "/work-in-progress" },
+      { label: "The Nigerian Story", href: "/coming-soon#citizen-library" },
+      { label: "Publications", href: "/coming-soon#citizen-library" },
+      { label: "Policy Briefs", href: "/coming-soon#citizen-library" },
+      { label: "Civic Education", href: "/coming-soon#citizen-library" },
+      { label: "Blog", href: "/coming-soon#citizen-library" },
       {
         label: "Media",
         children: [
-          { label: "Podcast", href: "/work-in-progress" },
-          { label: "Videos & Documentaries", href: "/work-in-progress" },
-          { label: "Photo Gallery", href: "/work-in-progress" },
+          { label: "Podcast", href: "/coming-soon#citizen-library" },
+          { label: "Videos & Documentaries", href: "/coming-soon#citizen-library" },
+          { label: "Photo Gallery", href: "/coming-soon#citizen-library" },
         ],
       },
     ],
