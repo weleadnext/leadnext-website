@@ -71,7 +71,7 @@ export default defineType({
       chairman: 'nationalChairman',
       media: 'image',
     },
-    prepare(selection: {title?: string; acronym?: string; chairman?: string; media?: unknown}) {
+    prepare(selection) {
       const {title, acronym, chairman, media} = selection
       return {
         title,
