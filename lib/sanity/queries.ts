@@ -99,6 +99,10 @@ export const POLITICAL_PARTIES_QUERY = defineQuery(`*[_type == "politicalParty"]
   _id,
   name,
   acronym,
+  nationalChairman,
+  nationalSecretary,
+  sourceUrl,
+  lastVerified,
   description,
   image
 }`)
