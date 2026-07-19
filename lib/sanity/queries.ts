@@ -154,3 +154,43 @@ export const FEDERAL_BUDGET_QUERY = defineQuery(`*[_type == "federalBudget"] | o
     notes
   }
 }`)
+
+export const INEC_ELECTION_CALENDAR_QUERY = defineQuery(`*[_type == "inecElectionCalendarItem"] | order(electionDate asc) {
+  _id,
+  title,
+  electionDate,
+  status,
+  scope,
+  state,
+  sourceUrl,
+  lastVerified,
+  publicNote
+}`)
+
+export const FEDERAL_PROJECTS_QUERY = defineQuery(`*[_type == "federalProject"] | order(lastVerified desc, title asc) {
+  _id,
+  title,
+  slug,
+  sector,
+  implementingAgency,
+  location,
+  status,
+  cost,
+  costText,
+  timeline,
+  startDate,
+  expectedCompletionDate,
+  summary,
+  sourceName,
+  sourceType,
+  sourceUrl,
+  lastVerified,
+  timelineEvents[] {
+    eventDate,
+    status,
+    title,
+    summary,
+    sourceName,
+    sourceUrl
+  }
+}`)
