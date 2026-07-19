@@ -9,6 +9,8 @@ interface SenateMember {
   name: string;
   portfolio: string;
   wikiUrl?: string;
+  sourceUrl?: string;
+  lastVerified?: string;
   senatorialZone?: string;
   stateName?: string;
   image?: any;

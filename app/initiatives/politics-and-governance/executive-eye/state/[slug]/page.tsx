@@ -9,7 +9,9 @@ import {
   Briefcase, 
   PieChart, 
   ArrowRight,
-  Building2 
+  Building2,
+  ExternalLink,
+  User
 } from 'lucide-react';
 import Link from 'next/link';
 import Image from 'next/image';
@@ -22,7 +24,23 @@ interface StateDetail {
   name: string;
   slug: { current: string };
   logo?: any;
+  governorName?: string;
+  governorSourceUrl?: string;
+  governorLastVerified?: string;
   zone?: { name: string };
+}
+
+function formatVerifiedDate(date?: string) {
+  if (!date) return null;
+  const parsedDate = new Date(date);
+  if (Number.isNaN(parsedDate.getTime())) return null;
+
+  return new Intl.DateTimeFormat('en-NG', {
+    day: 'numeric',
+    month: 'short',
+    year: 'numeric',
+    timeZone: 'UTC',
+  }).format(parsedDate);
 }
 
 export default async function StateDetailPage({ params }: { params: Promise<{ slug: string }> }) {
@@ -110,6 +128,31 @@ export default async function StateDetailPage({ params }: { params: Promise<{ sl
                   <span className="inline-block mt-4 px-3 py-1 bg-white/10 text-white text-sm font-medium rounded-full border border-white/20">
                     {state.zone.name}
                   </span>
+                )}
+
+                {state.governorName && (
+                  <div className="mt-5 flex flex-wrap items-center justify-center md:justify-start gap-3 text-sm text-gray-200">
+                    <span className="inline-flex items-center gap-2 font-semibold text-white">
+                      <User className="h-4 w-4 text-gold" />
+                      Governor: {state.governorName}
+                    </span>
+                    {state.governorLastVerified && (
+                      <span className="text-gray-300">
+                        Verified {formatVerifiedDate(state.governorLastVerified)}
+                      </span>
+                    )}
+                    {state.governorSourceUrl && (
+                      <a
+                        href={state.governorSourceUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center gap-1 font-semibold text-teal hover:text-white"
+                      >
+                        Official source
+                        <ExternalLink className="h-3 w-3" />
+                      </a>
+                    )}
+                  </div>
                 )}
               </div>
             </div>

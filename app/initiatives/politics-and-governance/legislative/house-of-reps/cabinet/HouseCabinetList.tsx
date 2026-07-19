@@ -12,6 +12,8 @@ interface HouseMember {
   name: string;
   portfolio: string;
   wikiUrl?: string;
+  sourceUrl?: string;
+  lastVerified?: string;
   constituency?: string;
   stateName?: string;
   image?: any;
@@ -19,6 +21,19 @@ interface HouseMember {
 
 interface HouseCabinetListProps {
   members: HouseMember[];
+}
+
+function formatVerifiedDate(date?: string) {
+  if (!date) return null;
+  const parsedDate = new Date(date);
+  if (Number.isNaN(parsedDate.getTime())) return null;
+
+  return new Intl.DateTimeFormat('en-NG', {
+    day: 'numeric',
+    month: 'short',
+    year: 'numeric',
+    timeZone: 'UTC',
+  }).format(parsedDate);
 }
 
 export const HouseCabinetList = ({ members }: HouseCabinetListProps) => {
@@ -141,6 +156,27 @@ export const HouseCabinetList = ({ members }: HouseCabinetListProps) => {
                         </div>
                       )}
                     </div>
+
+                    {(member.lastVerified || member.sourceUrl) && (
+                      <div className="mb-4 flex flex-wrap items-center gap-2 text-xs text-gray-500">
+                        {member.lastVerified && (
+                          <span>
+                            Verified {formatVerifiedDate(member.lastVerified)}
+                          </span>
+                        )}
+                        {member.sourceUrl && (
+                          <a
+                            href={member.sourceUrl}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="inline-flex items-center gap-1 font-semibold text-navy hover:text-gold"
+                          >
+                            Source
+                            <ExternalLink className="h-3 w-3" />
+                          </a>
+                        )}
+                      </div>
+                    )}
 
                     {member.wikiUrl ? (
                       <a 

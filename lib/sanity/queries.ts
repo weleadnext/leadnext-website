@@ -24,6 +24,8 @@ export const SENATE_CABINET_MEMBERS_QUERY = defineQuery(`*[_type == "senateCabin
   name,
   portfolio,
   wikiUrl,
+  sourceUrl,
+  lastVerified,
   senatorialZone,
   "stateName": state->name,
   image
@@ -34,6 +36,8 @@ export const HOUSE_CABINET_MEMBERS_QUERY = defineQuery(`*[_type == "houseCabinet
   name,
   portfolio,
   wikiUrl,
+  sourceUrl,
+  lastVerified,
   constituency,
   "stateName": state->name,
   image
@@ -45,6 +49,8 @@ export const SECURITY_HEADS_QUERY = defineQuery(`*[_type == "securityHead"] | or
   position,
   incumbent,
   publicProfileUrl,
+  sourceUrl,
+  lastVerified,
   "stateOfOrigin": stateOfOrigin->name,
   image
 }`)
@@ -67,6 +73,9 @@ export const STATES_QUERY = defineQuery(`*[_type == "state"] | order(name asc) {
   name,
   slug,
   logo,
+  governorName,
+  governorSourceUrl,
+  governorLastVerified,
   zone->{name}
 }`)
 
@@ -75,6 +84,9 @@ export const STATE_DETAIL_QUERY = defineQuery(`*[_type == "state" && slug.curren
   name,
   slug,
   logo,
+  governorName,
+  governorSourceUrl,
+  governorLastVerified,
   zone->{name}
 }`)
 
