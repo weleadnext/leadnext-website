@@ -1,5 +1,5 @@
 import { StructureBuilder } from 'sanity/structure'
-import { FileText, MapPin, Building2, User, GraduationCap, Inbox, CheckCircle2, Clock, XCircle, Eye, Mail, Briefcase, ShieldAlert, Library, Flag, Landmark, Gavel, PieChart, Users } from 'lucide-react'
+import { FileText, MapPin, Building2, User, GraduationCap, Inbox, CheckCircle2, Clock, XCircle, Eye, Mail, Briefcase, ShieldAlert, Library, Flag, Landmark, Gavel, PieChart, Users, CalendarDays } from 'lucide-react'
 
 export const structure = (S: StructureBuilder) =>
   S.list()
@@ -210,10 +210,28 @@ export const structure = (S: StructureBuilder) =>
                 .title('Federal MDAs')
                 .icon(Library)
                 .child(S.documentTypeList('federalMda').title('Federal MDAs')),
-                  S.listItem()
-                    .title('Federal Budget')
-                    .icon(PieChart)
-                    .child(S.documentTypeList('federalBudget').title('Federal Budget')),
+              S.listItem()
+                .title('Federal Budget')
+                .icon(PieChart)
+                .child(S.documentTypeList('federalBudget').title('Federal Budget')),
+              S.listItem()
+                .title('Federal Key Projects')
+                .icon(Briefcase)
+                .child(S.documentTypeList('federalProject').title('Federal Key Projects')),
+            ])
+        ),
+
+      S.listItem()
+        .title('Elections')
+        .icon(CalendarDays)
+        .child(
+          S.list()
+            .title('Elections')
+            .items([
+              S.listItem()
+                .title('INEC Election Calendar')
+                .icon(CalendarDays)
+                .child(S.documentTypeList('inecElectionCalendarItem').title('INEC Election Calendar')),
             ])
         ),
 

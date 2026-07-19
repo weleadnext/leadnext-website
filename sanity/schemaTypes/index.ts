@@ -18,6 +18,8 @@ import senateCabinetMember from '../schemas/senate-cabinet-member'
 import houseCabinetMember from '../schemas/house-cabinet-member'
 import stateAssemblyCabinetMember from '../schemas/state-assembly-cabinet-member'
 import federalBudget from '../schemas/federal-budget'
+import inecElectionCalendarItem from '../schemas/inec-election-calendar-item'
+import federalProject from '../schemas/federal-project'
 import workWithUs from '../schemas/work-with-us'
 
 export const schema: { types: SchemaTypeDefinition[] } = {
@@ -41,6 +43,8 @@ export const schema: { types: SchemaTypeDefinition[] } = {
     houseCabinetMember,
     stateAssemblyCabinetMember,
     federalBudget,
+    inecElectionCalendarItem,
+    federalProject,
     workWithUs,
   ],
 }
