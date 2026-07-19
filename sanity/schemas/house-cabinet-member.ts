@@ -43,6 +43,18 @@ export default defineType({
       type: 'url',
     }),
     defineField({
+      name: 'sourceUrl',
+      title: 'Official Source URL',
+      type: 'url',
+      description: 'Official source used to verify this House leadership record.',
+    }),
+    defineField({
+      name: 'lastVerified',
+      title: 'Last Verified',
+      type: 'date',
+      description: 'Date this record was last checked against the official source.',
+    }),
+    defineField({
       name: 'image',
       title: 'Image',
       type: 'image',

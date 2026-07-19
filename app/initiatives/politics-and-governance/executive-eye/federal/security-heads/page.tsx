@@ -14,8 +14,23 @@ interface SecurityHead {
   position: string;
   incumbent: string;
   publicProfileUrl?: string;
+  sourceUrl?: string;
+  lastVerified?: string;
   stateOfOrigin?: string;
   image?: any;
+}
+
+function formatVerifiedDate(date?: string) {
+  if (!date) return null;
+  const parsedDate = new Date(date);
+  if (Number.isNaN(parsedDate.getTime())) return null;
+
+  return new Intl.DateTimeFormat('en-NG', {
+    day: 'numeric',
+    month: 'short',
+    year: 'numeric',
+    timeZone: 'UTC',
+  }).format(parsedDate);
 }
 
 export default async function SecurityHeadsPage() {
@@ -93,6 +108,27 @@ export default async function SecurityHeadsPage() {
                       <div className="flex items-center gap-2 text-gray-500 text-sm mb-6 mt-auto">
                         <MapPin className="h-4 w-4" />
                         <span>{head.stateOfOrigin}</span>
+                      </div>
+                    )}
+
+                    {(head.lastVerified || head.sourceUrl) && (
+                      <div className="mb-4 flex flex-wrap items-center gap-2 text-xs text-gray-500">
+                        {head.lastVerified && (
+                          <span>
+                            Verified {formatVerifiedDate(head.lastVerified)}
+                          </span>
+                        )}
+                        {head.sourceUrl && (
+                          <a
+                            href={head.sourceUrl}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="inline-flex items-center gap-1 font-semibold text-navy hover:text-gold"
+                          >
+                            Source
+                            <ExternalLink className="h-3 w-3" />
+                          </a>
+                        )}
                       </div>
                     )}
 

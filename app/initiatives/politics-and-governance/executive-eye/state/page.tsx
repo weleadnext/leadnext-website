@@ -2,7 +2,7 @@ import { FadeIn } from '@/components/animations/FadeIn';
 import { client } from '@/sanity/lib/client';
 import { STATES_QUERY } from '@/lib/sanity/queries';
 import { urlFor } from '@/sanity/lib/image';
-import { Building2, MapPin } from 'lucide-react';
+import { Building2, MapPin, User } from 'lucide-react';
 import Link from 'next/link';
 import Image from 'next/image';
 
@@ -13,7 +13,23 @@ interface State {
   name: string;
   slug: { current: string };
   logo?: any;
+  governorName?: string;
+  governorSourceUrl?: string;
+  governorLastVerified?: string;
   zone?: { name: string };
+}
+
+function formatVerifiedDate(date?: string) {
+  if (!date) return null;
+  const parsedDate = new Date(date);
+  if (Number.isNaN(parsedDate.getTime())) return null;
+
+  return new Intl.DateTimeFormat('en-NG', {
+    day: 'numeric',
+    month: 'short',
+    year: 'numeric',
+    timeZone: 'UTC',
+  }).format(parsedDate);
 }
 
 export default async function StateGovernmentHub() {
@@ -80,6 +96,20 @@ export default async function StateGovernmentHub() {
                       <span className="inline-block px-2 py-1 bg-gray-50 text-gray-500 text-xs font-medium rounded-full">
                         {state.zone.name}
                       </span>
+                    )}
+
+                    {state.governorName && (
+                      <div className="mt-4 flex items-start gap-2 text-left text-sm text-slate">
+                        <User className="mt-0.5 h-4 w-4 shrink-0 text-gold" />
+                        <div>
+                          <p className="font-semibold text-navy">{state.governorName}</p>
+                          {state.governorLastVerified && (
+                            <p className="text-xs text-gray-500">
+                              Verified {formatVerifiedDate(state.governorLastVerified)}
+                            </p>
+                          )}
+                        </div>
+                      </div>
                     )}
                   </div>
                 </Link>

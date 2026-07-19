@@ -9,6 +9,8 @@ interface HouseMember {
   name: string;
   portfolio: string;
   wikiUrl?: string;
+  sourceUrl?: string;
+  lastVerified?: string;
   constituency?: string;
   stateName?: string;
   image?: any;
