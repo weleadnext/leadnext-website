@@ -2,8 +2,7 @@ import { FadeIn } from '@/components/animations/FadeIn';
 import { client } from '@/sanity/lib/client';
 import { POLITICAL_PARTIES_QUERY } from '@/lib/sanity/queries';
 import { urlFor } from '@/sanity/lib/image';
-import { Flag, ArrowLeft, Info } from 'lucide-react';
-import Link from 'next/link';
+import { ExternalLink, Flag } from 'lucide-react';
 import Image from 'next/image';
 
 export const revalidate = 60;
@@ -12,8 +11,40 @@ interface PoliticalParty {
   _id: string;
   name: string;
   acronym: string;
+  nationalChairman?: string;
+  nationalSecretary?: string;
+  sourceUrl?: string;
+  lastVerified?: string;
   description?: string;
   image: any;
+}
+
+function formatVerifiedDate(date?: string) {
+  if (!date) return null;
+  const parsedDate = new Date(date);
+  if (Number.isNaN(parsedDate.getTime())) return null;
+
+  return new Intl.DateTimeFormat('en-NG', {
+    day: 'numeric',
+    month: 'short',
+    year: 'numeric',
+    timeZone: 'UTC',
+  }).format(parsedDate);
+}
+
+function visiblePartyDescription(party: PoliticalParty) {
+  const description = party.description?.trim();
+  if (!description) return '';
+
+  if (!party.nationalChairman && !party.nationalSecretary) return description;
+
+  return description
+    .split(/\n+/)
+    .map((line) => line.trim())
+    .filter((line) => !/^National (Chairman|Secretary):/i.test(line))
+    .join('\n')
+    .replace(/,\s*$/, '')
+    .trim();
 }
 
 export default async function PoliticalPartiesPage() {
@@ -77,20 +108,66 @@ export default async function PoliticalPartiesPage() {
                     <h3 className="font-serif text-lg font-bold text-navy mb-2 line-clamp-2">
                       {party.name}
                     </h3>
-                    {party.description && (
+                    {visiblePartyDescription(party) && (
                       <div className="relative group/text mt-2">
                         <p className="text-sm text-gray-600 line-clamp-4 cursor-default">
-                          {party.description}
+                          {visiblePartyDescription(party)}
                         </p>
                         
                         {/* Hover Tooltip for full text */}
                         <div className="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 w-64 bg-navy text-white text-xs p-3 rounded-lg shadow-xl opacity-0 invisible group-hover/text:opacity-100 group-hover/text:visible transition-all duration-200 pointer-events-none z-50">
                           <div className="relative z-10 font-medium leading-relaxed">
-                            {party.description}
+                            {visiblePartyDescription(party)}
                           </div>
                           {/* Arrow */}
                           <div className="absolute -bottom-1 left-1/2 -translate-x-1/2 w-2 h-2 bg-navy rotate-45"></div>
                         </div>
+                      </div>
+                    )}
+
+                    {(party.nationalChairman || party.nationalSecretary) && (
+                      <div className="mt-4 w-full space-y-2 rounded-lg border border-gray-100 bg-slate-50 p-3 text-left">
+                        {party.nationalChairman && (
+                          <div>
+                            <p className="text-[11px] font-bold uppercase tracking-wide text-gray-500">
+                              National Chairman
+                            </p>
+                            <p className="text-sm font-semibold text-navy">
+                              {party.nationalChairman}
+                            </p>
+                          </div>
+                        )}
+                        {party.nationalSecretary && (
+                          <div>
+                            <p className="text-[11px] font-bold uppercase tracking-wide text-gray-500">
+                              National Secretary
+                            </p>
+                            <p className="text-sm font-semibold text-navy">
+                              {party.nationalSecretary}
+                            </p>
+                          </div>
+                        )}
+                      </div>
+                    )}
+
+                    {(party.lastVerified || party.sourceUrl) && (
+                      <div className="mt-3 flex w-full flex-wrap items-center justify-center gap-2 text-xs text-gray-500">
+                        {party.lastVerified && (
+                          <span>
+                            Verified {formatVerifiedDate(party.lastVerified)}
+                          </span>
+                        )}
+                        {party.sourceUrl && (
+                          <a
+                            href={party.sourceUrl}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="inline-flex items-center gap-1 font-semibold text-navy hover:text-gold"
+                          >
+                            Source
+                            <ExternalLink className="h-3 w-3" />
+                          </a>
+                        )}
                       </div>
                     )}
                   </div>
