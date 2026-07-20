@@ -170,7 +170,7 @@ export const INEC_ELECTION_CALENDAR_QUERY = defineQuery(`*[_type == "inecElectio
 export const FEDERAL_PROJECTS_QUERY = defineQuery(`*[_type == "federalProject"] | order(lastVerified desc, title asc) {
   _id,
   title,
-  slug,
+  "slug": slug.current,
   sector,
   implementingAgency,
   location,
