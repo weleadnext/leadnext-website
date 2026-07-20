@@ -1,7 +1,7 @@
 import { FadeIn } from '@/components/animations/FadeIn'
 import { client } from '@/sanity/lib/client'
 import { FEDERAL_PROJECTS_QUERY } from '@/lib/sanity/queries'
-import { ArrowLeft, BriefcaseBusiness, CalendarClock, ExternalLink, MapPin, WalletCards } from 'lucide-react'
+import { ArrowLeft, BriefcaseBusiness, CalendarClock, ExternalLink, MapPin, Newspaper, WalletCards } from 'lucide-react'
 import Link from 'next/link'
 
 export const revalidate = 60
@@ -18,6 +18,7 @@ interface ProjectTimelineEvent {
 interface FederalProject {
   _id: string
   title: string
+  slug?: string
   sector?: string
   implementingAgency?: string
   location?: string
@@ -33,6 +34,24 @@ interface FederalProject {
   sourceUrl: string
   lastVerified?: string
   timelineEvents?: ProjectTimelineEvent[]
+}
+
+interface ProjectUpdate {
+  id: string
+  kind: 'source' | 'timeline'
+  eventDate?: string
+  status?: string
+  title: string
+  summary?: string
+  sourceName?: string
+  sourceType?: string
+  sourceUrl?: string
+}
+
+interface ProjectGroup {
+  key: string
+  primary: FederalProject
+  updates: ProjectUpdate[]
 }
 
 function formatDate(value?: string) {
@@ -73,10 +92,135 @@ function costLabel(project: FederalProject) {
   }).format(project.cost)
 }
 
+function normalizedTitle(value: string) {
+  return value
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, ' ')
+    .replace(
+      /\b(fg|fgn|federal government|tinubu|president|approves|approved|flags|flagged|off|commissions|commissioned|awards|awarded|launches|launched|begins|starts|update|project)\b/g,
+      ' '
+    )
+    .replace(/\s+/g, ' ')
+    .trim()
+}
+
+function projectGroupKey(project: FederalProject) {
+  return project.slug || normalizedTitle(project.title) || project._id
+}
+
+function projectTitleTokens(value: string) {
+  return normalizedTitle(value)
+    .split(' ')
+    .filter((token) => token.length > 3)
+}
+
+function projectTitleSimilarity(left: string, right: string) {
+  const leftTokens = new Set(projectTitleTokens(left))
+  const rightTokens = new Set(projectTitleTokens(right))
+  if (!leftTokens.size || !rightTokens.size) return 0
+
+  const sharedCount = Array.from(leftTokens).filter((token) => rightTokens.has(token)).length
+  return sharedCount / Math.min(leftTokens.size, rightTokens.size)
+}
+
+function isSameProject(left: FederalProject, right: FederalProject) {
+  const leftKey = projectGroupKey(left)
+  const rightKey = projectGroupKey(right)
+  if (leftKey && rightKey && leftKey === rightKey) return true
+  if (normalizedTitle(left.title) === normalizedTitle(right.title)) return true
+  return projectTitleSimilarity(left.title, right.title) >= 0.6
+}
+
+function projectDateValue(project: FederalProject) {
+  const value = project.lastVerified || project.expectedCompletionDate || project.startDate || ''
+  const parsedDate = value ? new Date(`${value}T00:00:00Z`) : null
+  return parsedDate && !Number.isNaN(parsedDate.getTime()) ? parsedDate.getTime() : 0
+}
+
+function updateDateValue(update: ProjectUpdate) {
+  const value = update.eventDate || ''
+  const parsedDate = value ? new Date(`${value}T00:00:00Z`) : null
+  return parsedDate && !Number.isNaN(parsedDate.getTime()) ? parsedDate.getTime() : 0
+}
+
+function sourceUpdateForProject(project: FederalProject): ProjectUpdate {
+  return {
+    id: `${project._id}-source`,
+    kind: 'source',
+    eventDate: project.lastVerified,
+    status: project.status,
+    title: `${formatStatus(project.status)} source update`,
+    summary: project.summary,
+    sourceName: project.sourceName,
+    sourceType: project.sourceType,
+    sourceUrl: project.sourceUrl,
+  }
+}
+
+function timelineUpdateForProject(project: FederalProject, event: ProjectTimelineEvent, index: number): ProjectUpdate {
+  return {
+    id: `${project._id}-timeline-${event.sourceUrl || event.title}-${index}`,
+    kind: 'timeline',
+    eventDate: event.eventDate || project.lastVerified,
+    status: event.status || project.status,
+    title: event.title,
+    summary: event.summary,
+    sourceName: event.sourceName || project.sourceName,
+    sourceType: project.sourceType,
+    sourceUrl: event.sourceUrl || project.sourceUrl,
+  }
+}
+
+function uniqueUpdates(updates: ProjectUpdate[]) {
+  const seen = new Set<string>()
+
+  return updates
+    .sort((a, b) => updateDateValue(b) - updateDateValue(a) || a.title.localeCompare(b.title))
+    .filter((update) => {
+      const key = [update.kind, update.sourceUrl || '', update.title, update.eventDate || ''].join('|').toLowerCase()
+      if (seen.has(key)) return false
+      seen.add(key)
+      return true
+    })
+}
+
+function groupFederalProjects(projects: FederalProject[]): ProjectGroup[] {
+  const groupedProjects: FederalProject[][] = []
+
+  projects.forEach((project) => {
+    const matchingGroup = groupedProjects.find((records) => records.some((existingProject) => isSameProject(project, existingProject)))
+    if (matchingGroup) {
+      matchingGroup.push(project)
+    } else {
+      groupedProjects.push([project])
+    }
+  })
+
+  return groupedProjects
+    .map((records) => {
+      const sortedRecords = records.slice().sort((a, b) => projectDateValue(b) - projectDateValue(a) || a.title.localeCompare(b.title))
+      const primary = sortedRecords[0]
+      const updates = uniqueUpdates(
+        sortedRecords.flatMap((project) => [
+          sourceUpdateForProject(project),
+          ...(project.timelineEvents || []).map((event, index) => timelineUpdateForProject(project, event, index)),
+        ])
+      )
+
+      return {
+        key: projectGroupKey(primary),
+        primary,
+        updates,
+      }
+    })
+    .sort((a, b) => projectDateValue(b.primary) - projectDateValue(a.primary) || a.primary.title.localeCompare(b.primary.title))
+}
+
 export default async function KeyProjectsPage() {
   const projects = await client.fetch<FederalProject[]>(FEDERAL_PROJECTS_QUERY)
-  const activeCount = projects.filter((project) => ['ongoing', 'flagged_off', 'awarded'].includes(project.status)).length
-  const verifiedCount = projects.filter((project) => project.lastVerified).length
+  const projectGroups = groupFederalProjects(projects)
+  const activeCount = projectGroups.filter((group) => ['ongoing', 'flagged_off', 'awarded'].includes(group.primary.status)).length
+  const updateCount = projectGroups.reduce((total, group) => total + group.updates.length, 0)
 
   return (
     <main className="min-h-screen bg-slate-50">
@@ -103,12 +247,12 @@ export default async function KeyProjectsPage() {
               </div>
               <div className="grid grid-cols-2 gap-3 text-sm">
                 <div className="border border-white/15 bg-white/10 p-4">
-                  <p className="text-gray-300">Tracked Projects</p>
-                  <p className="mt-1 text-2xl font-bold">{projects.length}</p>
+                  <p className="text-gray-300">Unique Projects</p>
+                  <p className="mt-1 text-2xl font-bold">{projectGroups.length}</p>
                 </div>
                 <div className="border border-white/15 bg-white/10 p-4">
-                  <p className="text-gray-300">Active Signals</p>
-                  <p className="mt-1 text-2xl font-bold">{activeCount || verifiedCount}</p>
+                  <p className="text-gray-300">Related Updates</p>
+                  <p className="mt-1 text-2xl font-bold">{updateCount || activeCount}</p>
                 </div>
               </div>
             </div>
@@ -118,7 +262,7 @@ export default async function KeyProjectsPage() {
 
       <section className="mx-auto max-w-7xl px-6 py-12">
         <FadeIn>
-          {projects.length === 0 ? (
+          {projectGroups.length === 0 ? (
             <div className="border border-gray-200 bg-white p-10 text-center">
               <BriefcaseBusiness className="mx-auto mb-4 h-12 w-12 text-gray-300" />
               <h2 className="text-lg font-semibold text-navy">No federal projects published yet</h2>
@@ -128,8 +272,10 @@ export default async function KeyProjectsPage() {
             </div>
           ) : (
             <div className="grid grid-cols-1 gap-6 lg:grid-cols-2">
-              {projects.map((project) => (
-                <article key={project._id} className="border border-gray-200 bg-white p-6 shadow-sm">
+              {projectGroups.map((group) => {
+                const project = group.primary
+                return (
+                <article key={group.key} className="border border-gray-200 bg-white p-6 shadow-sm">
                   <div className="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
                     <div>
                       <p className="text-xs font-bold uppercase tracking-wide text-gray-500">
@@ -171,22 +317,41 @@ export default async function KeyProjectsPage() {
                     </div>
                   </div>
 
-                  {project.timelineEvents?.length ? (
-                    <div className="mt-6 border-t border-gray-100 pt-5">
-                      <h3 className="text-sm font-bold uppercase tracking-wide text-gray-500">Timeline Updates</h3>
-                      <div className="mt-4 space-y-4">
-                        {project.timelineEvents.slice(0, 4).map((event) => (
-                          <div key={`${event.title}-${event.eventDate || event.sourceUrl}`} className="border-l-2 border-teal pl-4">
-                            <p className="text-xs font-semibold uppercase tracking-wide text-gray-500">
-                              {[formatDate(event.eventDate), formatStatus(event.status)].filter(Boolean).join(' - ')}
-                            </p>
-                            <p className="mt-1 font-semibold text-navy">{event.title}</p>
-                            {event.summary && <p className="mt-1 text-sm text-gray-600">{event.summary}</p>}
+                  <details className="mt-6 border-t border-gray-100 pt-5">
+                    <summary className="flex cursor-pointer list-none items-center justify-between gap-4 text-sm font-bold uppercase tracking-wide text-gray-500">
+                      <span className="inline-flex items-center gap-2">
+                        <Newspaper className="h-4 w-4 text-teal" />
+                        Related News And Updates
+                      </span>
+                      <span className="rounded-full bg-slate-100 px-3 py-1 text-xs text-navy">
+                        {group.updates.length} update{group.updates.length === 1 ? '' : 's'}
+                      </span>
+                    </summary>
+                    <div className="mt-4 space-y-4">
+                      {group.updates.map((update) => (
+                        <div key={update.id} className="border-l-2 border-teal pl-4">
+                          <div className="flex flex-wrap items-center gap-2 text-xs font-semibold uppercase tracking-wide text-gray-500">
+                            {update.eventDate && <span>{formatDate(update.eventDate)}</span>}
+                            {update.status && <span>{formatStatus(update.status)}</span>}
+                            <span>{update.kind === 'timeline' ? 'Timeline' : update.sourceType || 'Source update'}</span>
                           </div>
-                        ))}
-                      </div>
+                          <p className="mt-1 font-semibold text-navy">{update.title}</p>
+                          {update.summary && <p className="mt-1 text-sm text-gray-600">{update.summary}</p>}
+                          {update.sourceUrl && (
+                            <a
+                              href={update.sourceUrl}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="mt-2 inline-flex items-center gap-1 text-xs font-semibold text-navy hover:text-gold"
+                            >
+                              {update.sourceName || 'Source'}
+                              <ExternalLink className="h-3 w-3" />
+                            </a>
+                          )}
+                        </div>
+                      ))}
                     </div>
-                  ) : null}
+                  </details>
 
                   <div className="mt-6 flex flex-wrap items-center gap-3 text-xs text-gray-500">
                     {project.lastVerified && <span>Verified {formatDate(project.lastVerified)}</span>}
@@ -202,7 +367,8 @@ export default async function KeyProjectsPage() {
                     </a>
                   </div>
                 </article>
-              ))}
+                )
+              })}
             </div>
           )}
         </FadeIn>
